@@ -35,9 +35,8 @@ export default function Home() {
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [backgroundImages.length])
 
-  // Parallax scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY)
@@ -83,59 +82,58 @@ export default function Home() {
     <main className="w-full">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-end justify-center bg-gradient-to-br from-[#1F3B64] via-[#1F3B64] to-[#1F3B64] text-white pt-20 overflow-hidden">
-        {/* Animated Background Images - Sliding Carousel */}
-        <div className="absolute inset-0 flex">
-          <AnimatePresence initial={false} mode="popLayout">
+      {/* Hero Section with Parallax */}
+      <section className="relative min-h-screen flex items-end justify-center text-white overflow-hidden">
+        {/* Animated Background Images - Side by Side Sliding Carousel with Parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            transform: `translate3d(0, ${scrollY * 0.5}px, 0)`,
+            willChange: 'transform',
+            transition: 'transform 0.1s ease-out'
+          }}
+        >
+          <AnimatePresence initial={false}>
             <motion.div
               key={currentImageIndex}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ duration: 1, ease: "easeInOut" }}
-              className="absolute inset-0 w-full h-full bg-cover bg-center will-change-transform"
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage: `url('${backgroundImages[currentImageIndex]}')`
+                backgroundImage: `url('${backgroundImages[currentImageIndex]}')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center'
               }}
             />
           </AnimatePresence>
         </div>
         
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div 
+          className="absolute inset-0 w-full h-full bg-black/40 pointer-events-none"
+          style={{
+            transform: `translate3d(0, ${scrollY * 0.5}px, 0)`,
+            willChange: 'transform',
+            transition: 'transform 0.1s ease-out'
+          }}
+        ></div>
 
-        {/* Beige "Know Us" Box with Parallax Text */}
-        <div className="relative w-full pb-0 z-10">
-          <motion.div 
-            className="w-full bg-[#C9B8A3]/90 backdrop-blur-sm py-16 px-6 lg:px-12"
-            style={{
-              transform: `translateY(${scrollY * 0.3}px)`
-            }}
-          >
-            <AnimatePresence mode="wait">
-              <motion.h1
-                key={currentImageIndex}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="text-4xl md:text-6xl lg:text-7xl font-bold text-center text-white uppercase tracking-wider"
-                style={{
-                  transform: `translateY(${scrollY * 0.15}px)`
-                }}
-              >
-                Engineering Excellence,
-                <br />
-                Built to Last
-              </motion.h1>
-            </AnimatePresence>
-          </motion.div>
+        {/* Foreground Content */}
+        <div className="relative w-full min-h-screen flex items-end justify-center pt-24 pb-0 z-10">
+          <div className="w-full bg-white py-16 px-6 lg:px-12 shadow-2xl">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center text-[#002060] uppercase tracking-wider leading-tight">
+              Engineering Excellence,
+              <br />
+              Built to Last
+            </h1>
+          </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="relative py-20 bg-white">
+      <section id="about" className="relative py-20 bg-white">
         {/* Section Heading Button */}
         <div className="absolute top-6 right-6 z-10">
           <div className="bg-[#1F3B64] text-white px-6 py-3 rounded-full font-semibold shadow-lg">
@@ -197,9 +195,9 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white">
+              <Card key={index} className="border-none shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white cursor-pointer">
                 <CardHeader>
-                  <div className="w-14 h-14 bg-[#1F3B64] rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-14 h-14 bg-[#1F3B64] rounded-lg flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
                     <service.icon className="w-7 h-7 text-white" />
                   </div>
                   <CardTitle className="text-xl text-[#1F3B64]">{service.title}</CardTitle>
@@ -327,12 +325,44 @@ export default function Home() {
                     className="border-[#C0C7CF]"
                   />
                 </div>
-                <Button type="submit" className="w-full bg-[#1F3B64] hover:bg-[#1F3B64]/90 text-white text-lg py-6">
+                <Button type="submit" className="w-full bg-[#003366] hover:bg-[#003366]/90 text-white text-lg py-6 transition-all hover:shadow-lg">
                   Send Message
                 </Button>
               </form>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* CTA Section with Background */}
+      <section className="relative py-32 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920')",
+          }}
+        >
+          {/* Dark Blue Overlay */}
+          <div className="absolute inset-0 bg-[#1F3B64]/90"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Have Any Questions?
+          </h2>
+          <p className="text-xl text-white/90 mb-8">
+            Our team of expert engineers is ready to discuss your project and provide professional guidance.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild className="bg-white text-[#1F3B64] hover:bg-white/90 text-lg px-8 py-6">
+              <a href="#contact">Get Started</a>
+            </Button>
+            <Button asChild variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#1F3B64] text-lg px-8 py-6">
+              <a href="tel:+15551234567">Call Us Now</a>
+            </Button>
+          </div>
         </div>
       </section>
 
