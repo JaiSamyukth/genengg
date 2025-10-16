@@ -213,44 +213,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Certifications Section */}
-      <section className="relative py-20 bg-[#1F3B64] text-white">
-        {/* Section Heading Button */}
-        <div className="absolute top-6 right-6 z-10">
-          <div className="bg-white text-[#1F3B64] px-6 py-3 rounded-full font-semibold shadow-lg">
-            Certifications
-          </div>
-        </div>
-        
-        <div className="w-full px-6 lg:px-12 pt-8 text-center">
-          <h2 className="text-4xl font-bold mb-12">Trusted Certifications</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="bg-white/10 border-[#1F3B64] backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl text-white">AISC Certified</CardTitle>
-                <CardDescription className="text-[#C0C7CF]">
-                  American Institute of Steel Construction
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-[#C0C7CF]">
-                Official certification for structural steel design and fabrication excellence.
-              </CardContent>
-            </Card>
-            <Card className="bg-white/10 border-[#1F3B64] backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl text-white">NISD Member</CardTitle>
-                <CardDescription className="text-[#C0C7CF]">
-                  National Institute for Steel Detailing
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-[#C0C7CF]">
-                Member organization ensuring highest standards in steel detailing practices.
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Contact Form */}
       <section id="contact" className="relative py-20 bg-white">
         {/* Section Heading Button */}
@@ -331,38 +293,6 @@ export default function Home() {
               </form>
             </CardContent>
           </Card>
-        </div>
-      </section>
-
-      {/* CTA Section with Background */}
-      <section className="relative py-32 overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920')",
-          }}
-        >
-          {/* Dark Blue Overlay */}
-          <div className="absolute inset-0 bg-[#1F3B64]/90"></div>
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Have Any Questions?
-          </h2>
-          <p className="text-xl text-white/90 mb-8">
-            Our team of expert engineers is ready to discuss your project and provide professional guidance.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild className="bg-white text-[#1F3B64] hover:bg-white/90 text-lg px-8 py-6">
-              <a href="#contact">Get Started</a>
-            </Button>
-            <Button asChild variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#1F3B64] text-lg px-8 py-6">
-              <a href="tel:+15551234567">Call Us Now</a>
-            </Button>
-          </div>
         </div>
       </section>
 

@@ -28,6 +28,11 @@ export default function Navigation() {
                 />
               </Link>
               
+              {/* GenEngg Text */}
+              <h1 className="hidden md:block text-4xl font-bold text-[#003366]">
+                GenEngg
+              </h1>
+              
               {/* License Badges and Text */}
               <div className="hidden md:flex flex-col gap-1 items-center">
                 {/* License Logos Row */}
@@ -70,12 +75,12 @@ export default function Navigation() {
               
               {/* Send Query Button */}
               <Button 
+                asChild
                 className="hidden md:flex bg-[#003366] hover:bg-[#003366]/90 text-white px-6 py-2 rounded-lg transition-all hover:shadow-lg"
-                onClick={() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                }}
               >
-                Send Query
+                <Link href="/#contact">
+                  Send Query
+                </Link>
               </Button>
               
               {/* Menu Button */}
@@ -148,13 +153,13 @@ export default function Navigation() {
                 >
                   Projects
                 </Link>
-                <a 
-                  href="#contact" 
+                <Link 
+                  href="/#contact" 
                   className="block text-[#1F3B64] hover:bg-gray-50 px-4 py-3 rounded-lg font-medium transition-all hover:translate-x-1"
                   onClick={() => setMenuOpen(false)}
                 >
                   Contact
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -169,13 +174,12 @@ export default function Navigation() {
               </div>
               
               <Button 
+                asChild
                 className="w-full bg-[#003366] hover:bg-[#003366]/90 text-white py-6 text-lg rounded-lg transition-all hover:shadow-lg"
-                onClick={() => {
-                  setMenuOpen(false)
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                }}
               >
-                Send Query
+                <Link href="/#contact" onClick={() => setMenuOpen(false)}>
+                  Send Query
+                </Link>
               </Button>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { Building2, Shield, Zap, Layers, ClipboardCheck, CheckCircle2 } from "lu
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
 
 export default function ServicesPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -185,11 +186,15 @@ export default function ServicesPage() {
             Our team of expert engineers is ready to bring your vision to life with precision and excellence.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-[#1F3B64] hover:bg-gray-100 text-lg px-8">
-              Request a Consultation
+            <Button asChild size="lg" className="bg-white text-[#1F3B64] hover:bg-gray-100 text-lg px-8">
+              <Link href="/#contact">
+                Request a Consultation
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#1F3B64] text-lg px-8">
-              View Portfolio
+            <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#1F3B64] text-lg px-8">
+              <Link href="/projects">
+                View Portfolio
+              </Link>
             </Button>
           </div>
         </div>
