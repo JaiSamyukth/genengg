@@ -133,7 +133,7 @@ export default function Navigation() {
                   Home
                 </Link>
                 <Link 
-                  href="/#about" 
+                  href="/about" 
                   className="block text-[#1F3B64] hover:bg-gray-50 px-4 py-3 rounded-lg font-medium transition-all hover:translate-x-1"
                   onClick={() => setMenuOpen(false)}
                 >

@@ -6,20 +6,32 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Building2, Shield, Zap, Layers, ClipboardCheck, CheckCircle2, ArrowRight } from "lucide-react"
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { Building2, Shield, Zap, Layers, ClipboardCheck, CheckCircle2, ArrowRight, Award, Users, Briefcase, TrendingUp, Target, Lightbulb, Hammer, BarChart3, Mail, Phone, MapPin, Send, Clock } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence, useInView } from "framer-motion"
 
 export default function Home() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
+    projectType: ""
   })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [scrollY, setScrollY] = useState(0)
+  const statsRef = useRef(null)
+  const isInView = useInView(statsRef, { once: true })
+  const [stats, setStats] = useState({
+    projects: 0,
+    clients: 0,
+    experience: 0,
+    team: 0
+  })
 
   const backgroundImages = [
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920",
@@ -45,9 +57,53 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Animated counter effect
+  useEffect(() => {
+    if (isInView) {
+      const duration = 2000
+      const steps = 60
+      const interval = duration / steps
+      
+      const targets = { projects: 250, clients: 150, experience: 15, team: 25 }
+      let step = 0
+
+      const timer = setInterval(() => {
+        step++
+        const progress = step / steps
+        
+        setStats({
+          projects: Math.floor(targets.projects * progress),
+          clients: Math.floor(targets.clients * progress),
+          experience: Math.floor(targets.experience * progress),
+          team: Math.floor(targets.team * progress)
+        })
+
+        if (step >= steps) {
+          setStats(targets)
+          clearInterval(timer)
+        }
+      }, interval)
+
+      return () => clearInterval(timer)
+    }
+  }, [isInView])
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    
+    setIsSubmitting(false)
+    setSubmitStatus('success')
     console.log("Form submitted:", formData)
+    
+    // Reset form after success
+    setTimeout(() => {
+      setFormData({ name: "", email: "", phone: "", message: "", projectType: "" })
+      setSubmitStatus('idle')
+    }, 3000)
   }
 
   const services = [
@@ -121,8 +177,8 @@ export default function Home() {
         ></div>
 
         {/* Foreground Content */}
-        <div className="relative w-full min-h-screen flex items-end justify-center pt-24 pb-0 z-10">
-          <div className="w-full bg-white py-16 px-6 lg:px-12 shadow-2xl">
+        <div className="relative w-full min-h-screen flex items-end justify-center pt- pb-0 z-10">
+          <div className="w-full bg-white py-8 px-6 lg:px-12 shadow-2xl">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center text-[#002060] uppercase tracking-wider leading-tight">
               Engineering Excellence,
               <br />
@@ -132,167 +188,886 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="relative py-20 bg-white">
-        {/* Section Heading Button */}
-        <div className="absolute top-6 right-6 z-10">
-          <div className="bg-[#1F3B64] text-white px-6 py-3 rounded-full font-semibold shadow-lg">
-            About Us
-          </div>
-        </div>
-        
-        <div className="w-full px-6 lg:px-12 pt-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-[#1F3B64] mb-6">About GenEngg</h2>
-              <p className="text-lg text-[#7C8A97] mb-4">
-                GenEngg is a leading structural engineering and commercial real estate consultancy firm with a proven track record of delivering exceptional results.
-              </p>
-              <p className="text-lg text-[#7C8A97] mb-6">
-                Our team of experienced engineers combines technical expertise with innovative thinking to provide comprehensive solutions for structural design, retrofitting, earthquake-resistant design, BIM modeling, and construction supervision.
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64]" />
-                  <span className="text-[#1F3B64] font-medium">AISC Certified</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64]" />
-                  <span className="text-[#1F3B64] font-medium">NISD Member</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64]" />
-                  <span className="text-[#1F3B64] font-medium">15+ Years Experience</span>
+      {/* About Section - Full Width Design */}
+      <section id="about" className="relative bg-white overflow-hidden">
+        <div className="w-full">
+          {/* Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center py-20 px-6"
+          >
+            <div className="inline-block bg-blue-50 text-[#1F3B64] px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              ABOUT US
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Engineering Excellence,
+              <br />
+              <span className="text-[#1F3B64]">Built to Last</span>
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+              We are a leading structural engineering consultancy with 15+ years of expertise in delivering 
+              world-class infrastructure solutions.
+            </p>
+          </motion.div>
+
+          {/* Split Section - Image Left, Content Right */}
+          <div className="grid lg:grid-cols-2 gap-0">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative min-h-[500px] lg:min-h-[600px]"
+            >
+              <div className="absolute inset-0">
+                <img 
+                  src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80" 
+                  alt="Modern engineering project" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              </div>
+              {/* Floating Stats Card */}
+              <div className="absolute bottom-8 right-8 bg-white rounded-xl shadow-2xl p-6 max-w-xs">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-[#1F3B64] rounded-lg flex items-center justify-center">
+                    <Award className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-gray-900">15+</div>
+                    <div className="text-sm text-gray-600">Years Experience</div>
+                  </div>
                 </div>
               </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="px-8 lg:px-16 py-16 lg:py-20 flex flex-col justify-center bg-gray-50"
+            >
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Transforming Visions into Structural Reality
+              </h3>
+              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                GenEngg is a premier structural engineering and commercial real estate consultancy firm. 
+                We specialize in delivering innovative, sustainable, and cost-effective solutions for complex 
+                engineering challenges.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                Our team of certified professionals combines deep technical expertise with cutting-edge 
+                technology to ensure every project meets the highest standards of safety, quality, and performance.
+              </p>
+              
+              {/* Feature List */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold text-gray-900">AISC Certified</div>
+                    <div className="text-sm text-gray-600">Industry-leading standards</div>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold text-gray-900">250+ Projects</div>
+                    <div className="text-sm text-gray-600">Successfully delivered</div>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold text-gray-900">ISO 9001:2015</div>
+                    <div className="text-sm text-gray-600">Quality certified</div>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold text-gray-900">Expert Team</div>
+                    <div className="text-sm text-gray-600">25+ professionals</div>
+                  </div>
+                </div>
+              </div>
+
+              <Button 
+                size="lg" 
+                className="mt-8 bg-[#1F3B64] hover:bg-[#003366] text-white font-semibold rounded-full px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                onClick={() => window.location.href = '/about'}
+              >
+                Learn More About Us
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* Stats Counter Section - Full Width */}
+          <motion.div 
+            ref={statsRef}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-0 border-y border-gray-200"
+          >
+            <div className="text-center p-12 lg:p-16 border-r border-gray-200 hover:bg-gray-50 transition-colors duration-300">
+              <div className="text-5xl lg:text-6xl font-bold text-[#1F3B64] mb-3">{stats.projects}+</div>
+              <div className="text-gray-600 font-medium text-lg">Completed Projects</div>
             </div>
-            <div className="relative h-96 rounded-lg overflow-hidden shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800" 
-                alt="Engineering team" 
-                className="w-full h-full object-cover"
-              />
+            <div className="text-center p-12 lg:p-16 md:border-r border-gray-200 hover:bg-gray-50 transition-colors duration-300">
+              <div className="text-5xl lg:text-6xl font-bold text-[#1F3B64] mb-3">{stats.clients}+</div>
+              <div className="text-gray-600 font-medium text-lg">Happy Clients</div>
             </div>
+            <div className="text-center p-12 lg:p-16 border-r border-gray-200 hover:bg-gray-50 transition-colors duration-300">
+              <div className="text-5xl lg:text-6xl font-bold text-[#1F3B64] mb-3">{stats.experience}+</div>
+              <div className="text-gray-600 font-medium text-lg">Years of Expertise</div>
+            </div>
+            <div className="text-center p-12 lg:p-16 hover:bg-gray-50 transition-colors duration-300">
+              <div className="text-5xl lg:text-6xl font-bold text-[#1F3B64] mb-3">{stats.team}+</div>
+              <div className="text-gray-600 font-medium text-lg">Expert Engineers</div>
+            </div>
+          </motion.div>
+
+          {/* Reverse Split Section - Content Left, Image Right */}
+          <div className="grid lg:grid-cols-2 gap-0">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="px-8 lg:px-16 py-16 lg:py-20 flex flex-col justify-center lg:order-1"
+            >
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+                Our Core Values Drive Everything We Do
+              </h3>
+              
+              <div className="space-y-8">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Target className="w-6 h-6 text-[#1F3B64]" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Precision Engineering</h4>
+                    <p className="text-gray-600">
+                      Every calculation, every detail matters. We apply meticulous precision to ensure structural 
+                      integrity and optimal performance.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Lightbulb className="w-6 h-6 text-[#1F3B64]" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Innovation First</h4>
+                    <p className="text-gray-600">
+                      Leveraging the latest technology and sustainable practices to deliver cutting-edge 
+                      engineering solutions.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Shield className="w-6 h-6 text-[#1F3B64]" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Safety & Compliance</h4>
+                    <p className="text-gray-600">
+                      Uncompromising commitment to safety standards and regulatory compliance in every project we undertake.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="w-6 h-6 text-[#1F3B64]" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Excellence Delivered</h4>
+                    <p className="text-gray-600">
+                      Committed to delivering superior results that exceed expectations and stand the test of time.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="lg:order-2 min-h-[500px] lg:min-h-[700px]"
+            >
+              <div className="h-full grid grid-rows-2 gap-0">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80" 
+                    alt="Engineering team collaboration" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-0">
+                  <div className="relative overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=600&q=80" 
+                      alt="Structural analysis" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="relative overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80" 
+                      alt="Construction site" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="relative py-20 bg-gray-50">
-        {/* Section Heading Button */}
-        <div className="absolute top-6 right-6 z-10">
-          <div className="bg-[#1F3B64] text-white px-6 py-3 rounded-full font-semibold shadow-lg">
-            Our Services
-          </div>
+      {/* Services Section - Best In Class Design */}
+      <section id="services" className="relative py-20 lg:py-32 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-        
-        <div className="w-full px-6 lg:px-12 pt-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#1F3B64] mb-4">Our Services</h2>
-            <p className="text-lg text-[#7C8A97] max-w-2xl mx-auto">
-              Comprehensive engineering solutions tailored to your project needs
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          {/* Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-[#1F3B64] px-5 py-2 rounded-full text-sm font-semibold mb-6 border border-blue-100">
+              <Zap className="w-4 h-4" />
+              OUR SERVICES
+            </div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+              Exceptional Engineering
+              <br />
+              <span className="bg-gradient-to-r from-[#1F3B64] via-[#003366] to-[#1F3B64] bg-clip-text text-transparent">
+                Solutions That Inspire
+              </span>
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Transforming ambitious visions into structural masterpieces through innovation, 
+              precision, and unmatched engineering expertise.
             </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="border-none shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white cursor-pointer">
-                <CardHeader>
-                  <div className="w-14 h-14 bg-[#1F3B64] rounded-lg flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
-                    <service.icon className="w-7 h-7 text-white" />
+          </motion.div>
+
+          {/* Premium Services Grid with Images */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {/* Service 1 - Structural Design */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              viewport={{ once: true }}
+              className="group relative"
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
+                {/* Image Section */}
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80" 
+                    alt="Structural Design" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  {/* Icon Badge */}
+                  <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Building2 className="w-8 h-8 text-[#1F3B64]" />
                   </div>
-                  <CardTitle className="text-xl text-[#1F3B64]">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-[#7C8A97]">
-                    {service.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
+                  {/* Title Overlay */}
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-2xl font-bold text-white mb-1">Structural Design</h3>
+                    <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-transparent rounded-full"></div>
+                  </div>
+                </div>
+                {/* Content Section */}
+                <div className="p-8">
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    Comprehensive structural engineering solutions for residential, commercial, and industrial projects 
+                    using advanced software and proven methodologies.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
+                      <span>Explore Service</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Service 2 - Retrofitting */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="group relative"
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=600&q=80" 
+                    alt="Retrofitting Services" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Shield className="w-8 h-8 text-[#1F3B64]" />
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-2xl font-bold text-white mb-1">Retrofitting</h3>
+                    <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    Expert retrofitting services to strengthen and modernize existing structures, 
+                    ensuring compliance with current building codes and safety standards.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
+                      <span>Explore Service</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Service 3 - Earthquake-Resistant Design */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="group relative"
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=600&q=80" 
+                    alt="Earthquake-Resistant Design" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Zap className="w-8 h-8 text-[#1F3B64]" />
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-2xl font-bold text-white mb-1">Seismic Engineering</h3>
+                    <div className="w-16 h-1 bg-gradient-to-r from-yellow-400 to-transparent rounded-full"></div>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    Advanced seismic design ensuring safety and compliance with latest standards, 
+                    protecting structures against earthquake forces.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
+                      <span>Explore Service</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Service 4 - BIM Modeling */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="group relative"
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80" 
+                    alt="BIM Modeling" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Layers className="w-8 h-8 text-[#1F3B64]" />
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-2xl font-bold text-white mb-1">BIM Modeling</h3>
+                    <div className="w-16 h-1 bg-gradient-to-r from-purple-400 to-transparent rounded-full"></div>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    State-of-the-art Building Information Modeling for efficient project planning, 
+                    visualization, and lifecycle management.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
+                      <span>Explore Service</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Service 5 - Construction Supervision */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="group relative"
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=600&q=80" 
+                    alt="Construction Supervision" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <ClipboardCheck className="w-8 h-8 text-[#1F3B64]" />
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-2xl font-bold text-white mb-1">Construction Supervision</h3>
+                    <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    Professional oversight ensuring quality and adherence to engineering specifications 
+                    throughout the construction process.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
+                      <span>Explore Service</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Featured Service Card - Spanning 2 columns on desktop */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="md:col-span-2 lg:col-span-1 group relative"
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1F3B64] to-[#003366] shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80')] bg-cover bg-center opacity-10"></div>
+                <div className="relative p-8 lg:p-10 flex flex-col justify-center h-full min-h-[400px]">
+                  <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
+                    <Award className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                    Full-Service Engineering Partnership
+                  </h3>
+                  <p className="text-lg text-gray-100 mb-8 leading-relaxed">
+                    From initial consultation to final delivery, we provide comprehensive engineering support 
+                    tailored to your project's unique requirements.
+                  </p>
+                  <ul className="space-y-4 mb-8">
+                    <li className="flex items-center text-white">
+                      <CheckCircle2 className="w-6 h-6 mr-3 flex-shrink-0 text-green-400" />
+                      <span>Dedicated project management</span>
+                    </li>
+                    <li className="flex items-center text-white">
+                      <CheckCircle2 className="w-6 h-6 mr-3 flex-shrink-0 text-green-400" />
+                      <span>24/7 technical support</span>
+                    </li>
+                    <li className="flex items-center text-white">
+                      <CheckCircle2 className="w-6 h-6 mr-3 flex-shrink-0 text-green-400" />
+                      <span>Quality assurance at every stage</span>
+                    </li>
+                  </ul>
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-[#1F3B64] hover:bg-gray-100 font-semibold rounded-full px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 w-fit"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    Schedule Consultation
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
           </div>
+
+          {/* Technology Showcase Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="relative rounded-3xl overflow-hidden bg-white shadow-2xl"
+          >
+            <div className="grid lg:grid-cols-2 gap-0">
+              {/* Image Collage */}
+              <div className="relative h-[500px] lg:h-auto">
+                <div className="absolute inset-0 grid grid-cols-2 gap-2 p-2">
+                  <img 
+                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" 
+                    alt="Engineering technology" 
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                  <div className="space-y-2">
+                    <img 
+                      src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=400&q=80" 
+                      alt="Construction tech" 
+                      className="w-full h-[calc(50%-4px)] object-cover rounded-2xl"
+                    />
+                    <img 
+                      src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&q=80" 
+                      alt="Modern structure" 
+                      className="w-full h-[calc(50%-4px)] object-cover rounded-2xl"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-12 lg:p-16 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-white">
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-[#1F3B64] px-4 py-2 rounded-full text-sm font-semibold mb-6 w-fit">
+                  <Lightbulb className="w-4 h-4" />
+                  TECHNOLOGY & INNOVATION
+                </div>
+                <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  Powered by Cutting-Edge Engineering Technology
+                </h3>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                  We leverage industry-leading software and tools to deliver precise, efficient, 
+                  and innovative engineering solutions.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#1F3B64] to-[#003366] rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Layers className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-1">Advanced BIM</h4>
+                      <p className="text-sm text-gray-600">3D modeling & visualization</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#1F3B64] to-[#003366] rounded-xl flex items-center justify-center flex-shrink-0">
+                      <BarChart3 className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-1">Structural Analysis</h4>
+                      <p className="text-sm text-gray-600">Precise load calculations</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#1F3B64] to-[#003366] rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Target className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-1">CAD Design</h4>
+                      <p className="text-sm text-gray-600">Detailed engineering drawings</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#1F3B64] to-[#003366] rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Hammer className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-1">Project Management</h4>
+                      <p className="text-sm text-gray-600">Efficient workflow systems</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Contact Form */}
-      <section id="contact" className="relative py-20 bg-white">
-        {/* Section Heading Button */}
-        <div className="absolute top-6 right-6 z-10">
-          <div className="bg-[#1F3B64] text-white px-6 py-3 rounded-full font-semibold shadow-lg">
-            Contact
-          </div>
-        </div>
+      <section id="contact" className="relative py-24 lg:py-32 overflow-hidden">
+        {/* Modern Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-blue-50/30 to-white"></div>
         
-        <div className="max-w-3xl mx-auto px-6 lg:px-12 pt-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-[#1F3B64] mb-4">Get In Touch</h2>
-            <p className="text-lg text-[#7C8A97]">
-              Ready to start your project? Contact us today for a consultation.
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          {/* Enhanced Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-[#1F3B64] px-5 py-2 rounded-full text-sm font-semibold mb-6 border border-blue-100">
+              <Mail className="w-4 h-4" />
+              GET IN TOUCH
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Let's Build Something
+              <br />
+              <span className="bg-gradient-to-r from-[#1F3B64] via-[#003366] to-[#1F3B64] bg-clip-text text-transparent">
+                Extraordinary Together
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Ready to transform your vision into reality? Our expert team is here to discuss your project 
+              and provide tailored engineering solutions.
             </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+            {/* Contact Information Cards - Left Side */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="lg:col-span-2 space-y-6"
+            >
+              {/* Contact Info Card */}
+              <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                
+                <div className="space-y-6">
+                  {/* Email */}
+                  <div className="flex items-start space-x-4 group cursor-pointer">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-gray-500 mb-1">Email Us</div>
+                      <div className="text-gray-900 font-semibold group-hover:text-[#1F3B64] transition-colors">
+                        info@genengg.com
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-start space-x-4 group cursor-pointer">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-gray-500 mb-1">Call Us</div>
+                      <div className="text-gray-900 font-semibold group-hover:text-[#1F3B64] transition-colors">
+                        +1 (555) 123-4567
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Location */}
+                  <div className="flex items-start space-x-4 group cursor-pointer">
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-gray-500 mb-1">Visit Us</div>
+                      <div className="text-gray-900 font-semibold group-hover:text-[#1F3B64] transition-colors">
+                        123 Engineering Plaza<br />New York, NY 10001
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Business Hours */}
+                  <div className="flex items-start space-x-4 group">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-gray-500 mb-1">Business Hours</div>
+                      <div className="text-gray-900 font-semibold">
+                        Mon - Fri: 9:00 AM - 6:00 PM<br />
+                        Sat: 10:00 AM - 2:00 PM
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+            </motion.div>
+
+            {/* Enhanced Contact Form - Right Side */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="lg:col-span-3"
+            >
+              <Card className="shadow-2xl border-0 rounded-3xl overflow-hidden">
+                <CardContent className="p-8 lg:p-10">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Name and Email Row */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                          Full Name <span className="text-red-500">*</span>
+                        </label>
+                        <Input
+                          id="name"
+                          type="text"
+                          placeholder="John Doe"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          required
+                          className="h-12 border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl text-base"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                          Email Address <span className="text-red-500">*</span>
+                        </label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="john@example.com"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          required
+                          className="h-12 border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl text-base"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Phone and Project Type Row */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                          Phone Number
+                        </label>
+                        <Input
+                          id="phone"
+                          type="tel"
+                          placeholder="+1 (555) 123-4567"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          className="h-12 border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl text-base"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="projectType" className="block text-sm font-semibold text-gray-700 mb-2">
+                          Project Type
+                        </label>
+                        <select
+                          id="projectType"
+                          value={formData.projectType}
+                          onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                          className="w-full h-12 border border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl text-base px-3 bg-white"
+                        >
+                          <option value="">Select a project type</option>
+                          <option value="residential">Residential</option>
+                          <option value="commercial">Commercial</option>
+                          <option value="industrial">Industrial</option>
+                          <option value="infrastructure">Infrastructure</option>
+                          <option value="retrofit">Retrofit/Renovation</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Message Field */}
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Project Details <span className="text-red-500">*</span>
+                      </label>
+                      <Textarea
+                        id="message"
+                        placeholder="Tell us about your project, timeline, and specific requirements..."
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        required
+                        rows={6}
+                        className="border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl resize-none text-base"
+                      />
+                      <div className="mt-2 text-sm text-gray-500">
+                        Please include project scope, timeline, and budget range if available.
+                      </div>
+                    </div>
+
+                    {/* Success/Error Messages */}
+                    <AnimatePresence>
+                      {submitStatus === 'success' && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-xl flex items-center space-x-3"
+                        >
+                          <CheckCircle2 className="w-6 h-6 text-green-600" />
+                          <div>
+                            <div className="font-semibold">Message sent successfully!</div>
+                            <div className="text-sm">We'll get back to you within 24 hours.</div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Submit Button */}
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-[#1F3B64] to-[#003366] hover:from-[#003366] hover:to-[#1F3B64] text-white text-lg font-semibold py-7 rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center justify-center">
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Sending Message...
+                        </span>
+                      ) : (
+                        <span className="flex items-center justify-center">
+                          Send Message
+                          <Send className="ml-2 w-5 h-5" />
+                        </span>
+                      )}
+                    </Button>
+
+                    {/* Privacy Notice */}
+                    <p className="text-sm text-gray-500 text-center">
+                      By submitting this form, you agree to our{' '}
+                      <a href="#" className="text-[#1F3B64] hover:underline font-medium">Privacy Policy</a>
+                      {' '}and{' '}
+                      <a href="#" className="text-[#1F3B64] hover:underline font-medium">Terms of Service</a>.
+                    </p>
+                  </form>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
-          <Card className="shadow-xl">
-            <CardContent className="pt-6">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-[#1F3B64] mb-2">
-                    Full Name
-                  </label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="John Doe"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    className="border-[#C0C7CF]"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-[#1F3B64] mb-2">
-                    Email Address
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                    className="border-[#C0C7CF]"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-[#1F3B64] mb-2">
-                    Phone Number
-                  </label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+1 (555) 123-4567"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="border-[#C0C7CF]"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-[#1F3B64] mb-2">
-                    Project Details
-                  </label>
-                  <Textarea
-                    id="message"
-                    placeholder="Tell us about your project..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    required
-                    rows={5}
-                    className="border-[#C0C7CF]"
-                  />
-                </div>
-                <Button type="submit" className="w-full bg-[#003366] hover:bg-[#003366]/90 text-white text-lg py-6 transition-all hover:shadow-lg">
-                  Send Message
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
