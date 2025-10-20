@@ -178,7 +178,7 @@ export default function Home() {
 
         {/* Foreground Content */}
         <div className="relative w-full min-h-screen flex items-end justify-center pt- pb-0 z-10">
-          <div className="w-full bg-white py-8 px-6 lg:px-12 shadow-2xl">
+          <div className="w-full bg-white py-4 px-6 lg:px-12 shadow-2xl">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center text-[#002060] uppercase tracking-wider leading-tight">
               Engineering Excellence,
               <br />

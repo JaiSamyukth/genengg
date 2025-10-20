@@ -12,7 +12,7 @@ export default function Navigation() {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/20">
-        <div className="w-full px-6 lg:px-12">
+        <div className="w-full px-4 lg:px-12">
           <div className="flex justify-between items-center h-24">
             {/* Left Side: Logo and Licenses as One Unit */}
             <div className="flex items-center gap-4">
