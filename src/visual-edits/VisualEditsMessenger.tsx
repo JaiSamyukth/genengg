@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -403,14 +402,7 @@ export default function HoverReceiver() {
   const [hoverBoxes, setHoverBoxes] = useState<Box[]>([]);
   const [focusBox, setFocusBox] = useState<Box>(null);
   const [focusedElementId, setFocusedElementId] = useState<string | null>(null);
-  const [isVisualEditMode, setIsVisualEditMode] = useState(() => {
-    // Initialize from localStorage if available
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem(VISUAL_EDIT_MODE_KEY);
-      return stored === "true";
-    }
-    return false;
-  });
+  const [isVisualEditMode, setIsVisualEditMode] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [resizeHandle, setResizeHandle] = useState<string | null>(null);
   const [resizeStart, setResizeStart] = useState<{
@@ -451,12 +443,34 @@ export default function HoverReceiver() {
   // Timeout refs for clearing persistent font map
   const persistentFontTimeouts = useRef<Map<string, number>>(new Map());
 
+  // Initialize from localStorage on mount (client-side only)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const stored = window.localStorage.getItem(VISUAL_EDIT_MODE_KEY);
+        if (stored === "true") {
+          setIsVisualEditMode(true);
+        }
+      } catch (err) {
+        // localStorage can throw in some browser/privacy modes — ignore safely
+        // eslint-disable-next-line no-console
+        console.warn("Failed to read visual edit mode from localStorage:", err);
+      }
+    }
+  }, []);
+
   // Keep ref in sync with state and persist to localStorage
   useEffect(() => {
     isVisualEditModeRef.current = isVisualEditMode;
-    // Persist to localStorage
+    // Persist to localStorage (only on client)
     if (typeof window !== "undefined") {
-      localStorage.setItem(VISUAL_EDIT_MODE_KEY, String(isVisualEditMode));
+      try {
+        window.localStorage.setItem(VISUAL_EDIT_MODE_KEY, String(isVisualEditMode));
+      } catch (err) {
+        // localStorage can throw in some browser/privacy modes — ignore safely
+        // eslint-disable-next-line no-console
+        console.warn("Failed to save visual edit mode to localStorage:", err);
+      }
     }
   }, [isVisualEditMode]);
 
@@ -479,30 +493,38 @@ export default function HoverReceiver() {
       // Restore focused element after a short delay to ensure DOM is ready
       setTimeout(() => {
         if (typeof window !== "undefined") {
-          // Restore focused element
-          const focusedData = localStorage.getItem(FOCUSED_ELEMENT_KEY);
-          if (focusedData) {
             try {
-              const { id } = JSON.parse(focusedData);
-              const element = document.querySelector(
-                `[data-orchids-id="${id}"]`
-              ) as HTMLElement;
+              // Restore focused element
+              const focusedData = window.localStorage.getItem(FOCUSED_ELEMENT_KEY);
+              if (focusedData) {
+                try {
+                  const { id } = JSON.parse(focusedData);
+                  const element = document.querySelector(
+                    `[data-orchids-id="${id}"]`
+                  ) as HTMLElement;
 
-              if (element) {
-                // Simulate a click on the element to restore focus
-                const rect = element.getBoundingClientRect();
-                const clickEvent = new MouseEvent("click", {
-                  clientX: rect.left + rect.width / 2,
-                  clientY: rect.top + rect.height / 2,
-                  bubbles: true,
-                  cancelable: true,
-                });
-                element.dispatchEvent(clickEvent);
+                  if (element) {
+                    // Simulate a click on the element to restore focus
+                    const rect = element.getBoundingClientRect();
+                    const clickEvent = new MouseEvent("click", {
+                      clientX: rect.left + rect.width / 2,
+                      clientY: rect.top + rect.height / 2,
+                      bubbles: true,
+                      cancelable: true,
+                    });
+                    element.dispatchEvent(clickEvent);
+                  }
+                } catch (parseErr) {
+                  // Ignore parsing errors
+                  // eslint-disable-next-line no-console
+                  console.warn("Failed to parse focused element data:", parseErr);
+                }
               }
-            } catch {
-              // Ignore parsing errors
+            } catch (err) {
+              // localStorage can throw in some browser/privacy modes — ignore safely
+              // eslint-disable-next-line no-console
+              console.warn("Failed to read focused element from localStorage:", err);
             }
-          }
         }
       }, 500); // Wait 500ms for DOM to be fully ready
     }
@@ -1534,15 +1556,18 @@ export default function HoverReceiver() {
         setFocusTag(tagName);
 
         // Save focused element info to localStorage
-        if (hitId && typeof window !== "undefined") {
-          const focusedElementData = {
-            id: hitId,
-            tag: tagName,
-          };
-          localStorage.setItem(
-            FOCUSED_ELEMENT_KEY,
-            JSON.stringify(focusedElementData)
-          );
+        if (hitId) {
+          try {
+            const focusedElementData = {
+              id: hitId,
+              tag: tagName,
+            };
+            window.localStorage.setItem(FOCUSED_ELEMENT_KEY, JSON.stringify(focusedElementData));
+          } catch (err) {
+            // localStorage can throw in some browser/privacy modes — ignore safely
+            // eslint-disable-next-line no-console
+            console.warn("Failed to save focused element to localStorage:", err);
+          }
         }
 
         // Find ALL other elements with the same orchids ID and show hover boxes
@@ -1755,8 +1780,12 @@ export default function HoverReceiver() {
           setHoverTag(null);
 
           // Clear focused element from localStorage
-          if (typeof window !== "undefined") {
-            localStorage.removeItem(FOCUSED_ELEMENT_KEY);
+          try {
+            window.localStorage.removeItem(FOCUSED_ELEMENT_KEY);
+          } catch (err) {
+            // localStorage can throw in some browser/privacy modes — ignore safely
+            // eslint-disable-next-line no-console
+            console.warn("Failed to remove focused element from localStorage:", err);
           }
 
           // Notify parent that focus was cleared
@@ -1828,9 +1857,15 @@ export default function HoverReceiver() {
         setIsVisualEditMode(newMode);
 
         // Clear localStorage if visual edit mode is being turned off
-        if (!newMode && typeof window !== "undefined") {
-          localStorage.removeItem(VISUAL_EDIT_MODE_KEY);
-          localStorage.removeItem(FOCUSED_ELEMENT_KEY);
+        if (!newMode) {
+          try {
+            window.localStorage.removeItem(VISUAL_EDIT_MODE_KEY);
+            window.localStorage.removeItem(FOCUSED_ELEMENT_KEY);
+          } catch (err) {
+            // localStorage can throw in some browser/privacy modes — ignore safely
+            // eslint-disable-next-line no-console
+            console.warn("Failed to clear visual edit keys from localStorage:", err);
+          }
         }
 
         // Send acknowledgement back to parent so it knows we received the mode change
