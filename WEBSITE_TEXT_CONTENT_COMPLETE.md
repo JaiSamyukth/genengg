@@ -99,14 +99,11 @@ GEN Engineering INC is a multidisciplinary engineering consulting company, inaug
   - Title: AISC Certified
   - Subtitle: Industry-leading standards
 - **Item 2:**
-  - Title: 250+ Projects
+  - Title: 2000+ Projects
   - Subtitle: Successfully delivered
 - **Item 3:**
   - Title: ISO 9001:2015-Aligned
   - Subtitle: Quality process
-- **Item 4:**
-  - Title: Expert Team
-  - Subtitle: 100+ professionals
 
 **Button Text:** Learn More About Us
 
@@ -325,10 +322,9 @@ engineering excellence
 
 ### STATS (Bottom of Hero)
 
-**Stat 1:** 250+ Projects Completed
-**Stat 2:** 150+ Happy Clients
+**Stat 1:** 2000+ Projects Completed
+**Stat 2:** 25+ Happy Clients
 **Stat 3:** 10+ Years of Expertise
-**Stat 4:** 100+ Expert Engineers
 
 ### OUR STORY SECTION
 
@@ -447,8 +443,8 @@ Advanced BIM-compliant workflows and multidisciplinary coordination capabilities
 
 
 
-**2024 - 250+ Milestone**
-Celebrating 250+ successful projects and over a decade of excellence
+**2024 - 2000+ Milestone**
+Celebrating 2000+ successful projects and over a decade of excellence
 
 ### CERTIFICATIONS SECTION
 
@@ -629,10 +625,9 @@ Next Project?
 - BIM-Compliant
 
 ### Statistics
-- 250+ Projects / Completed Projects
-- 150+ Clients / Happy Clients
+- 2000+ Projects / Completed Projects
+- 25+ Clients / Happy Clients
 - 10+ Years / Years of Expertise
-- 100+ Team Members / Expert Engineers
 - 12+ Years (About page badge)
 
 ### Core Services (Full Names)

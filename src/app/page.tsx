@@ -33,11 +33,10 @@ export default function Home() {
   })
 
   const backgroundImages = [
+    "https://images.unsplash.com/photo-1533280385001-c32ffcbd52a7",
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920",
-    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920",
-    "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1920",
-    "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1920",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920"
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920",
+    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920"
   ]
 
   useEffect(() => {
@@ -197,9 +196,6 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center py-20 px-6"
           >
-            <div className="inline-block bg-blue-50 text-[#1F3B64] px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              ABOUT US
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
               Shaping the Future of
               <br />
@@ -221,7 +217,7 @@ export default function Home() {
             >
               <div className="absolute inset-0">
                 <img 
-                  src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80" 
+                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920" 
                   alt="Modern engineering project" 
                   className="w-full h-full object-cover"
                 />
@@ -234,7 +230,7 @@ export default function Home() {
                     <Award className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-gray-900">20+</div>
+                    <div className="text-3xl font-bold text-gray-900">10+</div>
                     <div className="text-sm text-gray-600">Years Experience</div>
                   </div>
                 </div>
@@ -396,7 +392,7 @@ export default function Home() {
               <div className="h-full grid grid-rows-2 gap-0">
                 <div className="relative overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80" 
+                    src="https://plus.unsplash.com/premium_photo-1663126874108-409fb65c879c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzYxODIxMzc4fA&ixlib=rb-4.1.0&q=80&w=1080" 
                     alt="Engineering team collaboration" 
                     className="w-full h-full object-cover"
                   />
@@ -404,14 +400,14 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-0">
                   <div className="relative overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=600&q=80" 
+                      src="https://images.unsplash.com/photo-1758599543129-5269a8f29e68?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1080" 
                       alt="Structural analysis" 
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="relative overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80" 
+                      src="https://plus.unsplash.com/premium_photo-1723759366079-f92eb0aee298?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzYxODIxMjE1fA&ixlib=rb-4.1.0&q=80&w=1080" 
                       alt="Construction site" 
                       className="w-full h-full object-cover"
                     />
