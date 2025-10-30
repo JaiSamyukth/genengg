@@ -29,8 +29,7 @@ export default function Home() {
   const [stats, setStats] = useState({
     projects: 0,
     clients: 0,
-    experience: 0,
-    team: 0
+    experience: 0
   })
 
   const backgroundImages = [
@@ -64,7 +63,7 @@ export default function Home() {
       const steps = 60
       const interval = duration / steps
       
-      const targets = { projects: 250, clients: 150, experience: 15, team: 25 }
+      const targets = { projects: 2000, clients: 25, experience: 10 }
       let step = 0
 
       const timer = setInterval(() => {
@@ -74,8 +73,7 @@ export default function Home() {
         setStats({
           projects: Math.floor(targets.projects * progress),
           clients: Math.floor(targets.clients * progress),
-          experience: Math.floor(targets.experience * progress),
-          team: Math.floor(targets.team * progress)
+          experience: Math.floor(targets.experience * progress)
         })
 
         if (step >= steps) {
@@ -108,29 +106,29 @@ export default function Home() {
 
   const services = [
     {
+      icon: ClipboardCheck,
+      title: "Estimation & Take-Off",
+      description: "We deliver accurate material take-offs for structural and miscellaneous steel, complete with comprehensive detailing schedules and cost analyses tailored to your project requirements."
+    },
+    {
       icon: Building2,
-      title: "Structural Design",
-      description: "Comprehensive structural engineering solutions for residential, commercial, and industrial projects."
+      title: "Structural Steel Detailing",
+      description: "Gen Engineering offers complete structural steel detailing solutions in compliance with AISC, OSHA, BS, Canadian, European, South African, and Indian standards. Our expertise spans detailing, fabrication planning, and erection coordination."
     },
     {
       icon: Shield,
-      title: "Retrofitting",
-      description: "Expert retrofitting services to strengthen and modernize existing structures."
-    },
-    {
-      icon: Zap,
-      title: "Earthquake-Resistant Design",
-      description: "Advanced seismic design ensuring safety and compliance with latest standards."
+      title: "Connection Design",
+      description: "We provide structural steel connection design services in accordance with British, American, and Canadian standards, ensuring structural integrity and full code compliance."
     },
     {
       icon: Layers,
-      title: "BIM Modeling",
-      description: "State-of-the-art Building Information Modeling for efficient project planning."
+      title: "BIM Services",
+      description: "Gen Engineering delivers Building Information Modeling solutions for multidisciplinary coordination and project integration throughout the construction lifecycle."
     },
     {
-      icon: ClipboardCheck,
-      title: "Construction Supervision",
-      description: "Professional oversight ensuring quality and adherence to engineering specifications."
+      icon: Target,
+      title: "Rebar Detailing",
+      description: "We provide precise rebar detailing services focused on accuracy, cost-efficiency, and constructability to meet your project specifications."
     }
   ]
 
@@ -180,9 +178,9 @@ export default function Home() {
         <div className="relative w-full min-h-screen flex items-end justify-center pt- pb-0 z-10">
           <div className="w-full bg-white py-4 px-6 lg:px-12 shadow-2xl">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center text-[#002060] uppercase tracking-wider leading-tight">
-              Engineering Excellence,
+              Exceptional Engineering
               <br />
-              Built to Last
+              Solutions That Inspire
             </h1>
           </div>
         </div>
@@ -203,13 +201,12 @@ export default function Home() {
               ABOUT US
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Engineering Excellence,
+              Shaping the Future of
               <br />
-              <span className="text-[#1F3B64]">Built to Last</span>
+              <span className="text-[#1F3B64]">The Built Environment</span>
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              We are a leading structural engineering consultancy with 15+ years of expertise in delivering 
-              world-class infrastructure solutions.
+              GEN Engineering INC is a multidisciplinary engineering consulting company, inaugurated in 2013, serving international clients. Our management team brings over 10 years of experience in 3D construction modelling and steel detailing.
             </p>
           </motion.div>
 
@@ -237,7 +234,7 @@ export default function Home() {
                     <Award className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-gray-900">15+</div>
+                    <div className="text-3xl font-bold text-gray-900">20+</div>
                     <div className="text-sm text-gray-600">Years Experience</div>
                   </div>
                 </div>
@@ -252,20 +249,17 @@ export default function Home() {
               className="px-8 lg:px-16 py-16 lg:py-20 flex flex-col justify-center bg-gray-50"
             >
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Transforming Visions into Structural Reality
+                About GEN Engineering INC
               </h3>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                GenEngg is a premier structural engineering and commercial real estate consultancy firm. 
-                We specialize in delivering innovative, sustainable, and cost-effective solutions for complex 
-                engineering challenges.
+                GEN Engineering INC is a multidisciplinary engineering consulting company, inaugurated in 2013, serving international clients to shape the future of the built environment. Our management team brings over 10 years of experience in 3D construction modelling and steel detailing, delivering precision-driven, innovative, and client-focused engineering services.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                Our team of certified professionals combines deep technical expertise with cutting-edge 
-                technology to ensure every project meets the highest standards of safety, quality, and performance.
+                Our expertise spans structural and miscellaneous steel detailing, connection design, estimation, and BIM services across diverse sectors including industrial, commercial, mining, and infrastructure projects worldwide.
               </p>
               
               {/* Feature List */}
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-3 gap-4">
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
                   <div>
@@ -276,24 +270,18 @@ export default function Home() {
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
                   <div>
-                    <div className="font-semibold text-gray-900">250+ Projects</div>
+                    <div className="font-semibold text-gray-900">2000+ Projects</div>
                     <div className="text-sm text-gray-600">Successfully delivered</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
                   <div>
-                    <div className="font-semibold text-gray-900">ISO 9001:2015</div>
-                    <div className="text-sm text-gray-600">Quality certified</div>
+                    <div className="font-semibold text-gray-900">ISO 9001:2015-Aligned</div>
+                    <div className="text-sm text-gray-600">Quality process</div>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
-                  <div>
-                    <div className="font-semibold text-gray-900">Expert Team</div>
-                    <div className="text-sm text-gray-600">25+ professionals</div>
-                  </div>
-                </div>
+
               </div>
 
               <Button 
@@ -314,23 +302,19 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-0 border-y border-gray-200"
+            className="grid grid-cols-1 md:grid-cols-3 gap-0 border-y border-gray-200"
           >
             <div className="text-center p-12 lg:p-16 border-r border-gray-200 hover:bg-gray-50 transition-colors duration-300">
               <div className="text-5xl lg:text-6xl font-bold text-[#1F3B64] mb-3">{stats.projects}+</div>
               <div className="text-gray-600 font-medium text-lg">Completed Projects</div>
             </div>
-            <div className="text-center p-12 lg:p-16 md:border-r border-gray-200 hover:bg-gray-50 transition-colors duration-300">
+            <div className="text-center p-12 lg:p-16 border-r border-gray-200 hover:bg-gray-50 transition-colors duration-300">
               <div className="text-5xl lg:text-6xl font-bold text-[#1F3B64] mb-3">{stats.clients}+</div>
               <div className="text-gray-600 font-medium text-lg">Happy Clients</div>
             </div>
-            <div className="text-center p-12 lg:p-16 border-r border-gray-200 hover:bg-gray-50 transition-colors duration-300">
+            <div className="text-center p-12 lg:p-16 hover:bg-gray-50 transition-colors duration-300">
               <div className="text-5xl lg:text-6xl font-bold text-[#1F3B64] mb-3">{stats.experience}+</div>
               <div className="text-gray-600 font-medium text-lg">Years of Expertise</div>
-            </div>
-            <div className="text-center p-12 lg:p-16 hover:bg-gray-50 transition-colors duration-300">
-              <div className="text-5xl lg:text-6xl font-bold text-[#1F3B64] mb-3">{stats.team}+</div>
-              <div className="text-gray-600 font-medium text-lg">Expert Engineers</div>
             </div>
           </motion.div>
 
@@ -344,7 +328,7 @@ export default function Home() {
               className="px-8 lg:px-16 py-16 lg:py-20 flex flex-col justify-center lg:order-1"
             >
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-                Our Core Values Drive Everything We Do
+                Core Values That Define Our Excellence
               </h3>
               
               <div className="space-y-8">
@@ -353,10 +337,10 @@ export default function Home() {
                     <Target className="w-6 h-6 text-[#1F3B64]" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">Precision Engineering</h4>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Precision in Design & Detailing</h4>
                     <p className="text-gray-600">
-                      Every calculation, every detail matters. We apply meticulous precision to ensure structural 
-                      integrity and optimal performance.
+                      Every calculation and component reflects accuracy and discipline, ensuring structural 
+                      integrity and fabrication excellence.
                     </p>
                   </div>
                 </div>
@@ -366,10 +350,23 @@ export default function Home() {
                     <Lightbulb className="w-6 h-6 text-[#1F3B64]" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">Innovation First</h4>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Innovation in Practice</h4>
                     <p className="text-gray-600">
-                      Leveraging the latest technology and sustainable practices to deliver cutting-edge 
-                      engineering solutions.
+                      Embracing the latest tools and digital workflows to redefine engineering standards and 
+                      deliver cutting-edge solutions.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Users className="w-6 h-6 text-[#1F3B64]" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Client-Centric Approach</h4>
+                    <p className="text-gray-600">
+                      We focus on becoming the most valuable asset to our clients—not just another service provider, 
+                      but a trusted partner in success.
                     </p>
                   </div>
                 </div>
@@ -381,19 +378,8 @@ export default function Home() {
                   <div>
                     <h4 className="text-xl font-bold text-gray-900 mb-2">Safety & Compliance</h4>
                     <p className="text-gray-600">
-                      Uncompromising commitment to safety standards and regulatory compliance in every project we undertake.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <TrendingUp className="w-6 h-6 text-[#1F3B64]" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">Excellence Delivered</h4>
-                    <p className="text-gray-600">
-                      Committed to delivering superior results that exceed expectations and stand the test of time.
+                      Ensuring complete adherence to international codes and safety standards in every project 
+                      we undertake.
                     </p>
                   </div>
                 </div>
@@ -459,21 +445,20 @@ export default function Home() {
               OUR SERVICES
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-              Exceptional Engineering
+              Engineering Excellence
               <br />
               <span className="bg-gradient-to-r from-[#1F3B64] via-[#003366] to-[#1F3B64] bg-clip-text text-transparent">
-                Solutions That Inspire
+                Built on Precision
               </span>
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Transforming ambitious visions into structural masterpieces through innovation, 
-              precision, and unmatched engineering expertise.
+              Delivering accurate, reliable structural steel detailing, connection design, and BIM services that meet international standards and exceed client expectations.
             </p>
           </motion.div>
 
           {/* Premium Services Grid with Images */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            {/* Service 1 - Structural Design */}
+            {/* Service 1 - Estimation & Take Off */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -485,26 +470,25 @@ export default function Home() {
                 {/* Image Section */}
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80" 
-                    alt="Structural Design" 
+                    src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" 
+                    alt="Estimation & Take Off" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                   {/* Icon Badge */}
                   <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <Building2 className="w-8 h-8 text-[#1F3B64]" />
+                    <ClipboardCheck className="w-8 h-8 text-[#1F3B64]" />
                   </div>
                   {/* Title Overlay */}
                   <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold text-white mb-1">Structural Design</h3>
+                    <h3 className="text-2xl font-bold text-white mb-1">Estimation & Take-Off</h3>
                     <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-transparent rounded-full"></div>
                   </div>
                 </div>
                 {/* Content Section */}
                 <div className="p-8">
                   <p className="text-gray-600 leading-relaxed mb-6">
-                    Comprehensive structural engineering solutions for residential, commercial, and industrial projects 
-                    using advanced software and proven methodologies.
+                    We deliver accurate material take-offs for structural and miscellaneous steel, complete with comprehensive detailing schedules and cost analyses tailored to your project requirements.
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
@@ -516,7 +500,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Service 2 - Retrofitting */}
+            {/* Service 2 - Steel Detailing */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -528,22 +512,21 @@ export default function Home() {
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=600&q=80" 
-                    alt="Retrofitting Services" 
+                    alt="Steel Detailing" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                   <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <Shield className="w-8 h-8 text-[#1F3B64]" />
+                    <Building2 className="w-8 h-8 text-[#1F3B64]" />
                   </div>
                   <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold text-white mb-1">Retrofitting</h3>
+                    <h3 className="text-2xl font-bold text-white mb-1">Structural Steel Detailing</h3>
                     <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
                   </div>
                 </div>
                 <div className="p-8">
                   <p className="text-gray-600 leading-relaxed mb-6">
-                    Expert retrofitting services to strengthen and modernize existing structures, 
-                    ensuring compliance with current building codes and safety standards.
+                    Gen Engineering offers complete structural steel detailing solutions in compliance with AISC, OSHA, BS, Canadian, European, South African, and Indian standards. Our expertise spans detailing, fabrication planning, and erection coordination.
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
@@ -555,7 +538,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Service 3 - Earthquake-Resistant Design */}
+            {/* Service 3 - Connection Design */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -567,22 +550,21 @@ export default function Home() {
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src="https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=600&q=80" 
-                    alt="Earthquake-Resistant Design" 
+                    alt="Connection Design" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                   <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <Zap className="w-8 h-8 text-[#1F3B64]" />
+                    <Shield className="w-8 h-8 text-[#1F3B64]" />
                   </div>
                   <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold text-white mb-1">Seismic Engineering</h3>
+                    <h3 className="text-2xl font-bold text-white mb-1">Connection Design</h3>
                     <div className="w-16 h-1 bg-gradient-to-r from-yellow-400 to-transparent rounded-full"></div>
                   </div>
                 </div>
                 <div className="p-8">
                   <p className="text-gray-600 leading-relaxed mb-6">
-                    Advanced seismic design ensuring safety and compliance with latest standards, 
-                    protecting structures against earthquake forces.
+                    We provide structural steel connection design services in accordance with British, American, and Canadian standards, ensuring structural integrity and full code compliance in every connection design we produce.
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
@@ -594,7 +576,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Service 4 - BIM Modeling */}
+            {/* Service 4 - BIM */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -614,14 +596,13 @@ export default function Home() {
                     <Layers className="w-8 h-8 text-[#1F3B64]" />
                   </div>
                   <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold text-white mb-1">BIM Modeling</h3>
+                    <h3 className="text-2xl font-bold text-white mb-1">BIM Services</h3>
                     <div className="w-16 h-1 bg-gradient-to-r from-purple-400 to-transparent rounded-full"></div>
                   </div>
                 </div>
                 <div className="p-8">
                   <p className="text-gray-600 leading-relaxed mb-6">
-                    State-of-the-art Building Information Modeling for efficient project planning, 
-                    visualization, and lifecycle management.
+                    Gen Engineering delivers Building Information Modeling solutions for multidisciplinary coordination and project integration throughout the construction lifecycle.
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
@@ -633,7 +614,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Service 5 - Construction Supervision */}
+            {/* Service 5 - Rebar Detailing */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -645,22 +626,21 @@ export default function Home() {
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=600&q=80" 
-                    alt="Construction Supervision" 
+                    alt="Rebar Detailing" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                   <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <ClipboardCheck className="w-8 h-8 text-[#1F3B64]" />
+                    <Zap className="w-8 h-8 text-[#1F3B64]" />
                   </div>
                   <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold text-white mb-1">Construction Supervision</h3>
+                    <h3 className="text-2xl font-bold text-white mb-1">Rebar Detailing</h3>
                     <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
                   </div>
                 </div>
                 <div className="p-8">
                   <p className="text-gray-600 leading-relaxed mb-6">
-                    Professional oversight ensuring quality and adherence to engineering specifications 
-                    throughout the construction process.
+                    We provide precise rebar detailing services focused on accuracy, cost-efficiency, and constructability to meet your project specifications.
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-[#1F3B64] font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
@@ -700,7 +680,7 @@ export default function Home() {
                     </li>
                     <li className="flex items-center text-white">
                       <CheckCircle2 className="w-6 h-6 mr-3 flex-shrink-0 text-green-400" />
-                      <span>24/7 technical support</span>
+                      <span>Dedicated technical support</span>
                     </li>
                     <li className="flex items-center text-white">
                       <CheckCircle2 className="w-6 h-6 mr-3 flex-shrink-0 text-green-400" />
@@ -881,7 +861,7 @@ export default function Home() {
                     <div>
                       <div className="text-sm font-medium text-gray-500 mb-1">Call Us</div>
                       <div className="text-gray-900 font-semibold group-hover:text-[#1F3B64] transition-colors">
-                        +1 (555) 123-4567
+                        +1 302-499-2050
                       </div>
                     </div>
                   </div>
@@ -894,7 +874,9 @@ export default function Home() {
                     <div>
                       <div className="text-sm font-medium text-gray-500 mb-1">Visit Us</div>
                       <div className="text-gray-900 font-semibold group-hover:text-[#1F3B64] transition-colors">
-                        123 Engineering Plaza<br />New York, NY 10001
+                        Gen Engineering INC<br />
+                        16192 Coastal Highway<br />
+                        Lewes, DE 19958
                       </div>
                     </div>
                   </div>
@@ -905,7 +887,7 @@ export default function Home() {
                       <Clock className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-gray-500 mb-1">Business Hours</div>
+                      <div className="text-sm font-medium text-gray-500 mb-1">Business Hours (EST)</div>
                       <div className="text-gray-900 font-semibold">
                         Mon - Fri: 9:00 AM - 6:00 PM<br />
                         Sat: 10:00 AM - 2:00 PM

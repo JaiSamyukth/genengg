@@ -196,22 +196,18 @@ export default function ProjectsPage() {
       {/* Stats Section */}
       <section className="py-20 bg-[#1F3B64] text-white">
         <div className="w-full px-6 lg:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-5xl font-bold text-white mb-2">200+</div>
+              <div className="text-5xl font-bold text-white mb-2">2000+</div>
               <div className="text-[#C0C7CF]">Projects Completed</div>
             </div>
             <div>
-              <div className="text-5xl font-bold text-white mb-2">15+</div>
+              <div className="text-5xl font-bold text-white mb-2">25+</div>
+              <div className="text-[#C0C7CF]">Happy Clients</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold text-white mb-2">10+</div>
               <div className="text-[#C0C7CF]">Years Experience</div>
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-white mb-2">50+</div>
-              <div className="text-[#C0C7CF]">Expert Engineers</div>
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-white mb-2">100%</div>
-              <div className="text-[#C0C7CF]">Client Satisfaction</div>
             </div>
           </div>
         </div>

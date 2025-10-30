@@ -21,8 +21,7 @@ export default function AboutPage() {
   const [stats, setStats] = useState({
     projects: 0,
     clients: 0,
-    experience: 0,
-    team: 0
+    experience: 0
   })
 
   const [currentValueIndex, setCurrentValueIndex] = useState(0)
@@ -30,45 +29,38 @@ export default function AboutPage() {
   const values = [
     {
       icon: Target,
-      title: "Precision Engineering",
-      description: "Every calculation, every detail matters. We apply meticulous precision to ensure structural integrity and optimal performance in all our projects.",
+      title: "Precision in Design & Detailing",
+      description: "Every calculation and component reflects accuracy and discipline. We ensure that each detail contributes to structural integrity and fabrication excellence.",
       color: "from-blue-500 to-indigo-600",
       image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=600&q=80"
     },
     {
       icon: Lightbulb,
-      title: "Innovation First",
-      description: "Leveraging cutting-edge technology and sustainable practices to deliver forward-thinking engineering solutions that shape the future.",
+      title: "Innovation in Practice",
+      description: "Embracing the latest tools and digital workflows to redefine engineering standards. We leverage advanced technology to deliver cutting-edge solutions.",
       color: "from-yellow-500 to-orange-600",
       image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80"
     },
     {
-      icon: Shield,
-      title: "Safety & Compliance",
-      description: "Uncompromising commitment to safety standards and regulatory compliance, ensuring every structure meets the highest industry benchmarks.",
-      color: "from-green-500 to-emerald-600",
-      image: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=600&q=80"
-    },
-    {
       icon: Heart,
       title: "Client-Centric Approach",
-      description: "Building lasting relationships through transparent communication, dedicated support, and unwavering commitment to client satisfaction.",
+      description: "We focus on becoming the most valuable asset to our clients—not just another service provider. Our success is measured by your satisfaction and project outcomes.",
       color: "from-red-500 to-pink-600",
       image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80"
     },
     {
       icon: TrendingUp,
-      title: "Excellence Delivered",
-      description: "Consistently exceeding expectations with superior results that stand the test of time, delivered on schedule and within budget.",
+      title: "Excellence in Execution",
+      description: "Delivering every project with integrity, reliability, and measurable quality. We consistently exceed expectations through disciplined execution.",
       color: "from-purple-500 to-violet-600",
       image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80"
     },
     {
-      icon: Globe,
-      title: "Sustainable Solutions",
-      description: "Committed to environmentally responsible engineering practices that minimize impact while maximizing efficiency and durability.",
-      color: "from-cyan-500 to-teal-600",
-      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80"
+      icon: Shield,
+      title: "Safety & Compliance",
+      description: "Ensuring complete adherence to international codes and safety standards. Our projects meet AISC, BS, CAN, EU, OSHA, and IS specifications.",
+      color: "from-green-500 to-emerald-600",
+      image: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=600&q=80"
     }
   ]
 
@@ -88,7 +80,7 @@ export default function AboutPage() {
       const steps = 60
       const interval = duration / steps
       
-      const targets = { projects: 250, clients: 150, experience: 15, team: 25 }
+      const targets = { projects: 2000, clients: 25, experience: 10 }
       let step = 0
 
       const timer = setInterval(() => {
@@ -98,8 +90,7 @@ export default function AboutPage() {
         setStats({
           projects: Math.floor(targets.projects * progress),
           clients: Math.floor(targets.clients * progress),
-          experience: Math.floor(targets.experience * progress),
-          team: Math.floor(targets.team * progress)
+          experience: Math.floor(targets.experience * progress)
         })
 
         if (step >= steps) {
@@ -112,54 +103,20 @@ export default function AboutPage() {
     }
   }, [isInView])
 
-  const teamMembers = [
-    {
-      name: "Dr. Rajesh Kumar",
-      role: "Founder & Chief Structural Engineer",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-      credentials: "PhD in Structural Engineering, PE, LEED AP",
-      specialization: "Seismic Design & High-Rise Structures"
-    },
-    {
-      name: "Priya Sharma",
-      role: "Senior Project Manager",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
-      credentials: "M.Tech Structural Engineering, PMP",
-      specialization: "Commercial & Industrial Projects"
-    },
-    {
-      name: "Amit Patel",
-      role: "Lead BIM Specialist",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80",
-      credentials: "B.Tech Civil, Revit Certified Professional",
-      specialization: "3D Modeling & Visualization"
-    },
-    {
-      name: "Sneha Desai",
-      role: "Structural Analysis Expert",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
-      credentials: "M.Eng Structural Engineering",
-      specialization: "FEA & Load Analysis"
-    }
-  ]
-
   const milestones = [
-    { year: "2009", title: "Foundation", description: "GenEngg established with a vision to revolutionize structural engineering" },
-    { year: "2012", title: "ISO Certification", description: "Achieved ISO 9001:2015 quality management certification" },
-    { year: "2015", title: "Major Expansion", description: "Expanded team to 15+ engineers, opened second office" },
+    { year: "2013", title: "Foundation", description: "Gen Engineering established with a vision to revolutionize structural engineering" },
+    { year: "2015", title: "ISO-Aligned & Expansion", description: "Implemented ISO 9001:2015-aligned quality processes and expanded team to 15+ engineers" },
     { year: "2018", title: "100+ Projects", description: "Successfully delivered 100th major infrastructure project" },
-    { year: "2020", title: "BIM Excellence", description: "Became certified BIM Level 2 consultancy" },
-    { year: "2022", title: "Sustainability Leader", description: "Recognized as leader in sustainable engineering practices" },
-    { year: "2024", title: "250+ Milestone", description: "Celebrating 250+ successful projects and 15 years of excellence" }
+    { year: "2020", title: "BIM Excellence", description: "Advanced BIM-compliant workflows and multidisciplinary coordination capabilities" },
+    { year: "2024", title: "2000+ Milestone", description: "Celebrating 2000+ successful projects and over a decade of excellence" }
   ]
 
   const certifications = [
-    { name: "ISO 9001:2015", description: "Quality Management" },
+    { name: "ISO 9001:2015-Aligned", description: "Quality Process" },
     { name: "AISC Certified", description: "Steel Construction" },
-    { name: "LEED Certified", description: "Green Building" },
-    { name: "BIM Level 2", description: "Building Information" },
-    { name: "OSHA Compliant", description: "Safety Standards" },
-    { name: "PE Licensed", description: "Professional Engineer" }
+    { name: "NISD Member", description: "Steel Detailing" },
+    { name: "BIM-Compliant", description: "Building Information" },
+    { name: "OSHA Compliant", description: "Safety Standards" }
   ]
 
   return (
@@ -217,7 +174,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.1 }}
           >
-            since 2009
+            since 2013
           </motion.p>
         </div>
 
@@ -229,7 +186,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.4 }}
               ref={statsRef}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12"
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
             >
               <div className="text-center">
                 <div className="text-4xl lg:text-5xl font-light text-[#1F3B64] mb-2">{stats.projects}+</div>
@@ -242,10 +199,6 @@ export default function AboutPage() {
               <div className="text-center">
                 <div className="text-4xl lg:text-5xl font-light text-[#1F3B64] mb-2">{stats.experience}+</div>
                 <div className="text-xs md:text-sm text-gray-500 font-light tracking-wide uppercase">Years of Expertise</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl lg:text-5xl font-light text-[#1F3B64] mb-2">{stats.team}+</div>
-                <div className="text-xs md:text-sm text-gray-500 font-light tracking-wide uppercase">Expert Engineers</div>
               </div>
             </motion.div>
           </div>
@@ -274,23 +227,15 @@ export default function AboutPage() {
               
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Founded in 2009 by Dr. Rajesh Kumar, GenEngg began with a singular vision: to redefine 
-                  structural engineering through innovation, precision, and unwavering commitment to excellence. 
-                  What started as a small consultancy has grown into one of the region's most trusted engineering firms.
+                  GEN Engineering INC is a multidisciplinary engineering consulting company, inaugurated in 2013, serving international clients to shape the future of the built environment. Our management team brings over 10 years of experience in 3D construction modelling and steel detailing, delivering precision-driven, innovative, and client-focused engineering services.
                 </p>
                 
                 <p>
-                  Over the past 15 years, we've had the privilege of working on some of the most challenging 
-                  and prestigious projects in the industry. From towering skyscrapers to complex industrial 
-                  facilities, from earthquake-resistant residential complexes to heritage structure retrofitting – 
-                  each project has strengthened our expertise and deepened our commitment.
+                  Our expertise in structural and miscellaneous steel detailing, connection design, estimation, and BIM services allows us to support projects across diverse sectors including industrial, commercial, mining, and infrastructure.
                 </p>
 
                 <p>
-                  Today, GenEngg stands as a testament to what dedicated professionals can achieve when 
-                  they combine technical mastery with genuine passion for their craft. Our team of 25+ 
-                  certified engineers brings together decades of collective experience, cutting-edge technology, 
-                  and innovative thinking to deliver solutions that exceed expectations.
+                  We take pride in leveraging advanced modelling technology and process improvement systems to reduce risk, enhance performance, and ensure top-tier quality in every deliverable. Our commitment to excellence has made us a trusted partner for clients across the United States, Canada, Australia, and India.
                 </p>
               </div>
 
@@ -301,7 +246,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <div className="font-bold text-gray-900 text-xl">Industry Leader</div>
-                    <div className="text-sm text-gray-600">Award-winning firm</div>
+                    <div className="text-sm text-gray-600">Trusted by clients globally</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -365,10 +310,92 @@ export default function AboutPage() {
                     <Trophy className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">15 Years</div>
+                    <div className="text-2xl font-bold text-gray-900">12+ Years</div>
                     <div className="text-sm text-gray-600">Engineering Excellence</div>
                   </div>
                 </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission, Vision & Values Section */}
+      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-[#1F3B64] px-5 py-2 rounded-full text-sm font-semibold mb-6 border border-blue-100">
+              <Target className="w-4 h-4" />
+              OUR GUIDING PRINCIPLES
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Mission, Vision
+              <span className="block text-[#1F3B64]">& Core Values</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Mission */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="bg-white rounded-3xl shadow-xl p-8 h-full border-t-4 border-blue-500 hover:shadow-2xl transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  To achieve excellence in Engineering services by having satisfied Customers through Consistent quality deliverables, promptness, and innovative cost effective solutions.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Vision */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="bg-white rounded-3xl shadow-xl p-8 h-full border-t-4 border-green-500 hover:shadow-2xl transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  To be recognized in the global market as a world class engineering service provider ensuring customer delight through quality, integrity, responsibility and reliability.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Values */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="bg-white rounded-3xl shadow-xl p-8 h-full border-t-4 border-purple-500 hover:shadow-2xl transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center mb-6">
+                  <Award className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Values</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We are extremely quality conscious. The quality of our work is guaranteed by the implementation of strict detailing procedures and commitment to excellence.
+                </p>
               </div>
             </motion.div>
           </div>
@@ -554,70 +581,6 @@ export default function AboutPage() {
                 </motion.div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section id="team" className="relative py-24 lg:py-32 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-[#1F3B64] px-5 py-2 rounded-full text-sm font-semibold mb-6 border border-blue-100">
-              <Users className="w-4 h-4" />
-              OUR LEADERSHIP TEAM
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Meet the Experts
-              <span className="block bg-gradient-to-r from-[#1F3B64] via-[#003366] to-[#1F3B64] bg-clip-text text-transparent">
-                Behind Our Success
-              </span>
-            </h2>
-            
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Our team of certified professionals brings together decades of experience, 
-              innovative thinking, and unwavering commitment to excellence.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white rounded-3xl overflow-hidden">
-                  <div className="relative h-72 overflow-hidden">
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                    <div className="text-[#1F3B64] font-semibold mb-3">{member.role}</div>
-                    <div className="text-sm text-gray-600 mb-3">{member.credentials}</div>
-                    <div className="flex items-start space-x-2">
-                      <GraduationCap className="w-4 h-4 text-[#1F3B64] mt-0.5 flex-shrink-0" />
-                      <div className="text-sm text-gray-700">{member.specialization}</div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>

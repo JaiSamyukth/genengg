@@ -3,7 +3,7 @@
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Building2, Shield, Zap, Layers, ClipboardCheck, CheckCircle2 } from "lucide-react"
+import { Building2, Shield, Zap, Layers, ClipboardCheck, CheckCircle2, Target } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -28,63 +28,60 @@ export default function ServicesPage() {
 
   const services = [
     {
-      icon: Building2,
-      title: "Structural Design",
-      description: "Comprehensive structural engineering solutions for residential, commercial, and industrial projects.",
+      icon: ClipboardCheck,
+      title: "Estimation & Take-Off",
+      description: "We deliver accurate material take-offs for structural and miscellaneous steel, complete with comprehensive detailing schedules and cost analyses tailored to your project requirements.",
       details: [
-        "Load-bearing capacity analysis",
-        "Foundation design and engineering",
-        "Steel and concrete structure design",
-        "Multi-story building design",
-        "Industrial facility structures"
+        "Material summary lists",
+        "Area and linear meter calculations",
+        "Non-standard formed member drawings",
+        "3D wireframe models for visualization",
+        "Preliminary RFIs for project clarity"
+      ]
+    },
+    {
+      icon: Building2,
+      title: "Structural Steel Detailing",
+      description: "Gen Engineering offers complete structural steel detailing solutions in compliance with AISC, OSHA, BS, Canadian, European, South African, and Indian standards. Our expertise spans detailing, fabrication planning, and erection coordination.",
+      details: [
+        "Comprehensive Bill of Materials (BOM)",
+        "Non-standard formed member drawings",
+        "Part and assembly drawings",
+        "Complete fabrication documentation"
       ]
     },
     {
       icon: Shield,
-      title: "Retrofitting",
-      description: "Expert retrofitting services to strengthen and modernize existing structures.",
+      title: "Connection Design",
+      description: "We provide structural steel connection design services in accordance with British, American, and Canadian standards, ensuring structural integrity and full code compliance.",
       details: [
-        "Structural assessment and evaluation",
-        "Seismic retrofitting solutions",
-        "Foundation strengthening",
-        "Historic building preservation",
-        "Code compliance upgrades"
-      ]
-    },
-    {
-      icon: Zap,
-      title: "Earthquake-Resistant Design",
-      description: "Advanced seismic design ensuring safety and compliance with latest standards.",
-      details: [
-        "Seismic hazard analysis",
-        "Base isolation systems",
-        "Energy dissipation devices",
-        "Performance-based design",
-        "Code-compliant solutions"
+        "Connection design markup plans",
+        "Structural design calculations",
+        "Connection sketches and tables"
       ]
     },
     {
       icon: Layers,
-      title: "BIM Modeling",
-      description: "State-of-the-art Building Information Modeling for efficient project planning.",
+      title: "BIM Services",
+      description: "Gen Engineering delivers Building Information Modeling solutions for multidisciplinary coordination and project integration throughout the construction lifecycle.",
       details: [
-        "3D structural modeling",
-        "Clash detection and coordination",
-        "Quantity takeoff and estimation",
-        "4D construction sequencing",
-        "As-built documentation"
+        "3D BIM structural or IFC models for coordination",
+        "2D coordination drawings",
+        "Quantity and quality estimation",
+        "Clash detection reports",
+        "4D BIM-based erection scheduling and simulation"
       ]
     },
     {
-      icon: ClipboardCheck,
-      title: "Construction Supervision",
-      description: "Professional oversight ensuring quality and adherence to engineering specifications.",
+      icon: Target,
+      title: "Rebar Detailing",
+      description: "We provide precise rebar detailing services focused on accuracy, cost-efficiency, and constructability to meet your project specifications.",
       details: [
-        "On-site quality control",
-        "Progress monitoring",
-        "Material testing coordination",
-        "RFI and submittal reviews",
-        "Final inspection and certification"
+        "Rebar estimation",
+        "Rebar shop drawings",
+        "Bar bending schedules",
+        "Material, assembly, and part lists",
+        "As-built drawings"
       ]
     }
   ]

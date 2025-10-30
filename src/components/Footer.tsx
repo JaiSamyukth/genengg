@@ -8,9 +8,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-6">GenEngg</h3>
+            <h3 className="text-2xl font-bold mb-6">Gen Engineering INC</h3>
             <p className="text-gray-300 text-base leading-relaxed">
-              Professional structural engineering and commercial real estate consultancy services.
+              Professional structural engineering and steel detailing services. Founded in 2013, our management team brings 10+ years of experience.
             </p>
           </div>
 
@@ -45,11 +45,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-6">Services</h4>
             <ul className="space-y-3 text-gray-300 text-base">
-              <li>Structural Design</li>
-              <li>Retrofitting</li>
-              <li>Earthquake-Resistant Design</li>
-              <li>BIM Modeling</li>
-              <li>Construction Supervision</li>
+              <li>Structural Steel Detailing</li>
+              <li>Connection Design & PE Stamping</li>
+              <li>Estimation & 3D Modelling</li>
+              <li>Facade Detailing</li>
+              <li>BIM & Advanced Modelling</li>
             </ul>
           </div>
 
@@ -63,11 +63,11 @@ export default function Footer() {
               </li>
               <li className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300 text-base">+1 (555) 123-4567</span>
+                <span className="text-gray-300 text-base">+1 302-499-2050</span>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300 text-base">123 Engineering Plaza, City, State</span>
+                <span className="text-gray-300 text-base">16192 Coastal Highway, Lewes, DE 19958</span>
               </li>
             </ul>
             <div className="flex space-x-4 mt-6">
@@ -85,7 +85,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-600 mt-12 pt-8 text-center text-gray-400 text-sm">
-          <p>© {new Date().getFullYear()} GenEngg. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Gen Engineering INC. All rights reserved.</p>
         </div>
       </div>
     </footer>

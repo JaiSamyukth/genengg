@@ -67,10 +67,10 @@ export default function Navigation() {
             
             {/* Right Side: Toll Free, Send Query Button, Menu Icon */}
             <div className="flex items-center gap-4">
-              {/* Toll Free Number */}
+              {/* Phone Number */}
               <div className="hidden md:flex items-center gap-2 text-[#1F3B64]">
                 <Phone className="w-5 h-5" />
-                <span className="font-semibold">Toll Free: 1800-123-4567</span>
+                <span className="font-semibold">+1 302-499-2050</span>
               </div>
               
               {/* Send Query Button */}
@@ -168,8 +168,8 @@ export default function Navigation() {
               <div className="flex items-center space-x-3 text-[#1F3B64] bg-gray-50 p-4 rounded-lg">
                 <Phone className="w-5 h-5" />
                 <div>
-                  <div className="text-xs text-gray-500">Toll Free</div>
-                  <div className="font-semibold">1-855-444-9497</div>
+                  <div className="text-xs text-gray-500">Phone</div>
+                  <div className="font-semibold">+1 302-499-2050</div>
                 </div>
               </div>
               
