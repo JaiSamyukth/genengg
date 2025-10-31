@@ -78,7 +78,7 @@ export default function Navigation() {
                 asChild
                 className="hidden md:flex bg-[#003366] hover:bg-[#003366]/90 text-white px-6 py-2 rounded-lg transition-all hover:shadow-lg"
               >
-                <Link href="/#contact">
+                <Link href="/contact">
                   Send Query
                 </Link>
               </Button>
@@ -154,7 +154,7 @@ export default function Navigation() {
                   Projects
                 </Link>
                 <Link 
-                  href="/#contact" 
+                  href="/contact" 
                   className="block text-[#1F3B64] hover:bg-gray-50 px-4 py-3 rounded-lg font-medium transition-all hover:translate-x-1"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -177,7 +177,7 @@ export default function Navigation() {
                 asChild
                 className="w-full bg-[#003366] hover:bg-[#003366]/90 text-white py-6 text-lg rounded-lg transition-all hover:shadow-lg"
               >
-                <Link href="/#contact" onClick={() => setMenuOpen(false)}>
+                <Link href="/contact" onClick={() => setMenuOpen(false)}>
                   Send Query
                 </Link>
               </Button>

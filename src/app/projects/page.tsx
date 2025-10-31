@@ -106,7 +106,7 @@ export default function ProjectsPage() {
       <Navigation />
       
       {/* Hero Section with Sliding Carousel */}
-      <section className="relative min-h-[50vh] flex items-center justify-center bg-gradient-to-r from-[#1F3B64] to-[#1F3B64] text-white pt-20 overflow-hidden">
+      <section className="relative min-h-[40vh] sm:min-h-[50vh] flex items-center justify-center bg-gradient-to-r from-[#1F3B64] to-[#1F3B64] text-white pt-20 overflow-hidden">
         {/* Animated Background Images - Sliding Carousel */}
         <div className="absolute inset-0 flex">
           <AnimatePresence initial={false} mode="popLayout">
@@ -126,20 +126,20 @@ export default function ProjectsPage() {
         
         <div className="absolute inset-0 bg-black/40"></div>
         
-        <div className="relative w-full px-6 lg:px-12 py-24 text-center z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+        <div className="relative w-full px-4 sm:px-6 lg:px-12 py-16 sm:py-20 md:py-24 text-center z-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
             Our Projects
           </h1>
-          <p className="text-xl md:text-2xl text-[#C0C7CF] max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#C0C7CF] max-w-3xl mx-auto px-4">
             Showcasing excellence in structural engineering across diverse sectors
           </p>
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20 bg-gray-50">
-        <div className="w-full px-6 lg:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div className="w-full px-4 sm:px-6 lg:px-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {projects.map((project, index) => (
               <Card 
                 key={index}
@@ -147,7 +147,7 @@ export default function ProjectsPage() {
                 onMouseEnter={() => setHoveredProject(index)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                   <img 
                     src={project.image}
                     alt={project.title}
@@ -158,30 +158,30 @@ export default function ProjectsPage() {
                   <div className={`absolute inset-0 bg-gradient-to-t from-[#1F3B64] to-transparent transition-opacity duration-300 ${
                     hoveredProject === index ? 'opacity-90' : 'opacity-60'
                   }`}></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <Badge className="bg-[#1F3B64] text-white mb-2">{project.category}</Badge>
-                    <h3 className="text-white font-bold text-xl">{project.title}</h3>
+                  <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
+                    <Badge className="bg-[#1F3B64] text-white mb-1.5 sm:mb-2 text-xs sm:text-sm">{project.category}</Badge>
+                    <h3 className="text-white font-bold text-base sm:text-lg md:text-xl">{project.title}</h3>
                   </div>
                 </div>
                 <CardHeader>
-                  <div className="flex items-center space-x-4 text-sm text-[#7C8A97] mb-2">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-[#7C8A97] mb-2">
                     <div className="flex items-center space-x-1">
-                      <MapPin className="w-4 h-4" />
+                      <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>{project.location}</span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <Calendar className="w-4 h-4" />
+                      <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>{project.year}</span>
                     </div>
                   </div>
-                  <CardDescription className="text-[#7C8A97]">
+                  <CardDescription className="text-sm sm:text-base text-[#7C8A97]">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {project.services.map((service, idx) => (
-                      <Badge key={idx} variant="outline" className="border-[#1F3B64] text-[#1F3B64]">
+                      <Badge key={idx} variant="outline" className="border-[#1F3B64] text-[#1F3B64] text-xs sm:text-sm">
                         {service}
                       </Badge>
                     ))}
@@ -194,20 +194,20 @@ export default function ProjectsPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-[#1F3B64] text-white">
-        <div className="w-full px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <section className="py-12 sm:py-16 lg:py-20 bg-[#1F3B64] text-white">
+        <div className="w-full px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
             <div>
-              <div className="text-5xl font-bold text-white mb-2">2000+</div>
-              <div className="text-[#C0C7CF]">Projects Completed</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">2000+</div>
+              <div className="text-sm sm:text-base text-[#C0C7CF]">Projects Completed</div>
             </div>
             <div>
-              <div className="text-5xl font-bold text-white mb-2">25+</div>
-              <div className="text-[#C0C7CF]">Happy Clients</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">25+</div>
+              <div className="text-sm sm:text-base text-[#C0C7CF]">Happy Clients</div>
             </div>
             <div>
-              <div className="text-5xl font-bold text-white mb-2">10+</div>
-              <div className="text-[#C0C7CF]">Years Experience</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">10+</div>
+              <div className="text-sm sm:text-base text-[#C0C7CF]">Years Experience</div>
             </div>
           </div>
         </div>

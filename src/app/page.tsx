@@ -3,25 +3,11 @@
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Building2, Shield, Zap, Layers, ClipboardCheck, CheckCircle2, ArrowRight, Award, Users, Briefcase, TrendingUp, Target, Lightbulb, Hammer, BarChart3, Mail, Phone, MapPin, Send, Clock } from "lucide-react"
+import { Building2, Shield, Zap, Layers, ClipboardCheck, CheckCircle2, ArrowRight, Award, Users, Target, Lightbulb, Hammer, BarChart3 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 
 export default function Home() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    projectType: ""
-  })
-
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [scrollY, setScrollY] = useState(0)
   const statsRef = useRef(null)
@@ -85,24 +71,6 @@ export default function Home() {
     }
   }, [isInView])
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setIsSubmitting(false)
-    setSubmitStatus('success')
-    console.log("Form submitted:", formData)
-    
-    // Reset form after success
-    setTimeout(() => {
-      setFormData({ name: "", email: "", phone: "", message: "", projectType: "" })
-      setSubmitStatus('idle')
-    }, 3000)
-  }
-
   const services = [
     {
       icon: ClipboardCheck,
@@ -162,24 +130,14 @@ export default function Home() {
             />
           </AnimatePresence>
         </div>
-        
-        {/* Dark overlay for text readability */}
-        <div 
-          className="absolute inset-0 w-full h-full bg-black/40 pointer-events-none"
-          style={{
-            transform: `translate3d(0, ${scrollY * 0.5}px, 0)`,
-            willChange: 'transform',
-            transition: 'transform 0.1s ease-out'
-          }}
-        ></div>
 
         {/* Foreground Content */}
-        <div className="relative w-full min-h-screen flex items-end justify-center pt- pb-0 z-10">
-          <div className="w-full bg-white py-4 px-6 lg:px-12 shadow-2xl">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center text-[#002060] uppercase tracking-wider leading-tight">
+        <div className="relative w-full min-h-screen flex items-end justify-center pt-0 pb-0 z-10">
+          <div className="w-full bg-white py-3 sm:py-4 md:py-6 px-3 sm:px-6 lg:px-12 shadow-2xl">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center text-[#002060] uppercase tracking-tight sm:tracking-wide md:tracking-wider leading-tight">
               Exceptional Engineering
-              <br />
-              Solutions That Inspire
+              <br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>Solutions That Inspire
             </h1>
           </div>
         </div>
@@ -194,14 +152,14 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center py-20 px-6"
+            className="text-center py-12 sm:py-16 md:py-20 px-4 sm:px-6"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
               Shaping the Future of
               <br />
               <span className="text-[#1F3B64]">The Built Environment</span>
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">
               GEN Engineering INC is a multidisciplinary engineering consulting company, inaugurated in 2013, serving international clients. Our management team brings over 10 years of experience in 3D construction modelling and steel detailing.
             </p>
           </motion.div>
@@ -213,7 +171,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="relative min-h-[500px] lg:min-h-[600px]"
+              className="relative min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px]"
             >
               <div className="absolute inset-0">
                 <img 
@@ -224,14 +182,14 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               </div>
               {/* Floating Stats Card */}
-              <div className="absolute bottom-8 right-8 bg-white rounded-xl shadow-2xl p-6 max-w-xs">
-                <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-[#1F3B64] rounded-lg flex items-center justify-center">
-                    <Award className="w-8 h-8 text-white" />
+              <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 bg-white rounded-lg sm:rounded-xl shadow-2xl p-3 sm:p-4 md:p-6 max-w-[180px] sm:max-w-xs">
+                <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-[#1F3B64] rounded-lg flex items-center justify-center">
+                    <Award className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-gray-900">10+</div>
-                    <div className="text-sm text-gray-600">Years Experience</div>
+                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">10+</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Years Experience</div>
                   </div>
                 </div>
               </div>
@@ -242,39 +200,39 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="px-8 lg:px-16 py-16 lg:py-20 flex flex-col justify-center bg-gray-50"
+              className="px-4 sm:px-6 md:px-8 lg:px-16 py-8 sm:py-12 md:py-16 lg:py-20 flex flex-col justify-center bg-gray-50"
             >
-              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
                 About GEN Engineering INC
               </h3>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
                 GEN Engineering INC is a multidisciplinary engineering consulting company, inaugurated in 2013, serving international clients to shape the future of the built environment. Our management team brings over 10 years of experience in 3D construction modelling and steel detailing, delivering precision-driven, innovative, and client-focused engineering services.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
                 Our expertise spans structural and miscellaneous steel detailing, connection design, estimation, and BIM services across diverse sectors including industrial, commercial, mining, and infrastructure projects worldwide.
               </p>
               
               {/* Feature List */}
-              <div className="grid sm:grid-cols-3 gap-4">
-                <div className="flex items-start space-x-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                <div className="flex items-start space-x-2 sm:space-x-3">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1F3B64] flex-shrink-0 mt-0.5 sm:mt-1" />
                   <div>
-                    <div className="font-semibold text-gray-900">AISC Certified</div>
-                    <div className="text-sm text-gray-600">Industry-leading standards</div>
+                    <div className="font-semibold text-sm sm:text-base text-gray-900">AISC Certified</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Industry-leading standards</div>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
+                <div className="flex items-start space-x-2 sm:space-x-3">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1F3B64] flex-shrink-0 mt-0.5 sm:mt-1" />
                   <div>
-                    <div className="font-semibold text-gray-900">2000+ Projects</div>
-                    <div className="text-sm text-gray-600">Successfully delivered</div>
+                    <div className="font-semibold text-sm sm:text-base text-gray-900">2000+ Projects</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Successfully delivered</div>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#1F3B64] flex-shrink-0 mt-1" />
+                <div className="flex items-start space-x-2 sm:space-x-3">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1F3B64] flex-shrink-0 mt-0.5 sm:mt-1" />
                   <div>
-                    <div className="font-semibold text-gray-900">ISO 9001:2015-Aligned</div>
-                    <div className="text-sm text-gray-600">Quality process</div>
+                    <div className="font-semibold text-sm sm:text-base text-gray-900">ISO 9001:2015-Aligned</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Quality process</div>
                   </div>
                 </div>
 
@@ -282,7 +240,7 @@ export default function Home() {
 
               <Button 
                 size="lg" 
-                className="mt-8 bg-[#1F3B64] hover:bg-[#003366] text-white font-semibold rounded-full px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                className="mt-6 sm:mt-8 bg-[#1F3B64] hover:bg-[#003366] text-white font-semibold rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                 onClick={() => window.location.href = '/about'}
               >
                 Learn More About Us
@@ -507,7 +465,7 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=600&q=80" 
+                    src="https://images.unsplash.com/photo-1648937740668-160a34e98653" 
                     alt="Steel Detailing" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -545,7 +503,7 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=600&q=80" 
+                    src="https://images.unsplash.com/photo-1678517098615-95d02f7c49ff" 
                     alt="Connection Design" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -583,7 +541,7 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80" 
+                    src="https://images.unsplash.com/photo-1618385455730-2571c38966b7" 
                     alt="BIM Modeling" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -621,7 +579,7 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full">
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=600&q=80" 
+                    src="https://images.unsplash.com/photo-1582540730843-f4418d96ccbe" 
                     alt="Rebar Detailing" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -686,7 +644,7 @@ export default function Home() {
                   <Button 
                     size="lg" 
                     className="bg-white text-[#1F3B64] hover:bg-gray-100 font-semibold rounded-full px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 w-fit"
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => window.location.href = '/contact'}
                   >
                     Schedule Consultation
                     <ArrowRight className="ml-2 w-5 h-5" />
@@ -785,267 +743,60 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section id="contact" className="relative py-24 lg:py-32 overflow-hidden">
-        {/* Modern Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-blue-50/30 to-white"></div>
-        
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-          {/* Enhanced Section Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+      {/* CTA Section - Contact */}
+      <section className="relative py-16 sm:py-20 lg:py-24 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="bg-gradient-to-br from-[#1F3B64] to-[#003366] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl"
           >
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-[#1F3B64] px-5 py-2 rounded-full text-sm font-semibold mb-6 border border-blue-100">
-              <Mail className="w-4 h-4" />
-              GET IN TOUCH
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Let's Build Something
-              <br />
-              <span className="bg-gradient-to-r from-[#1F3B64] via-[#003366] to-[#1F3B64] bg-clip-text text-transparent">
-                Extraordinary Together
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your vision into reality? Our expert team is here to discuss your project 
-              and provide tailored engineering solutions.
-            </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
-            {/* Contact Information Cards - Left Side */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="lg:col-span-2 space-y-6"
-            >
-              {/* Contact Info Card */}
-              <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+            <div className="grid lg:grid-cols-2 gap-0">
+              <div className="p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+                  Ready to Start Your
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+                    Next Project?
+                  </span>
+                </h2>
                 
-                <div className="space-y-6">
-                  {/* Email */}
-                  <div className="flex items-start space-x-4 group cursor-pointer">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-gray-500 mb-1">Email Us</div>
-                      <div className="text-gray-900 font-semibold group-hover:text-[#1F3B64] transition-colors">
-                        info@genengg.com
-                      </div>
-                    </div>
-                  </div>
+                <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-8 sm:mb-10 leading-relaxed">
+                  Let's discuss how our expertise can bring your vision to life. 
+                  Get in touch with our team today for a consultation.
+                </p>
 
-                  {/* Phone */}
-                  <div className="flex items-start space-x-4 group cursor-pointer">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-gray-500 mb-1">Call Us</div>
-                      <div className="text-gray-900 font-semibold group-hover:text-[#1F3B64] transition-colors">
-                        +1 302-499-2050
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Location */}
-                  <div className="flex items-start space-x-4 group cursor-pointer">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <MapPin className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-gray-500 mb-1">Visit Us</div>
-                      <div className="text-gray-900 font-semibold group-hover:text-[#1F3B64] transition-colors">
-                        Gen Engineering INC<br />
-                        16192 Coastal Highway<br />
-                        Lewes, DE 19958
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Business Hours */}
-                  <div className="flex items-start space-x-4 group">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <Clock className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-gray-500 mb-1">Business Hours (EST)</div>
-                      <div className="text-gray-900 font-semibold">
-                        Mon - Fri: 9:00 AM - 6:00 PM<br />
-                        Sat: 10:00 AM - 2:00 PM
-                      </div>
-                    </div>
-                  </div>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-[#1F3B64] hover:bg-gray-100 font-semibold rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                    onClick={() => window.location.href = '/contact'}
+                  >
+                    Contact Us
+                    <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1F3B64] font-semibold rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                    onClick={() => window.location.href = '/projects'}
+                  >
+                    View Projects
+                  </Button>
                 </div>
               </div>
 
-              
-            </motion.div>
-
-            {/* Enhanced Contact Form - Right Side */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="lg:col-span-3"
-            >
-              <Card className="shadow-2xl border-0 rounded-3xl overflow-hidden">
-                <CardContent className="p-8 lg:p-10">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Name and Email Row */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                          Full Name <span className="text-red-500">*</span>
-                        </label>
-                        <Input
-                          id="name"
-                          type="text"
-                          placeholder="John Doe"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          required
-                          className="h-12 border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl text-base"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                          Email Address <span className="text-red-500">*</span>
-                        </label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@example.com"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          required
-                          className="h-12 border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl text-base"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Phone and Project Type Row */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                          Phone Number
-                        </label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          placeholder="+1 (555) 123-4567"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="h-12 border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl text-base"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="projectType" className="block text-sm font-semibold text-gray-700 mb-2">
-                          Project Type
-                        </label>
-                        <select
-                          id="projectType"
-                          value={formData.projectType}
-                          onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                          className="w-full h-12 border border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl text-base px-3 bg-white"
-                        >
-                          <option value="">Select a project type</option>
-                          <option value="residential">Residential</option>
-                          <option value="commercial">Commercial</option>
-                          <option value="industrial">Industrial</option>
-                          <option value="infrastructure">Infrastructure</option>
-                          <option value="retrofit">Retrofit/Renovation</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Message Field */}
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                        Project Details <span className="text-red-500">*</span>
-                      </label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell us about your project, timeline, and specific requirements..."
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        required
-                        rows={6}
-                        className="border-gray-200 focus:border-[#1F3B64] focus:ring-[#1F3B64] rounded-xl resize-none text-base"
-                      />
-                      <div className="mt-2 text-sm text-gray-500">
-                        Please include project scope, timeline, and budget range if available.
-                      </div>
-                    </div>
-
-                    {/* Success/Error Messages */}
-                    <AnimatePresence>
-                      {submitStatus === 'success' && (
-                        <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          className="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-xl flex items-center space-x-3"
-                        >
-                          <CheckCircle2 className="w-6 h-6 text-green-600" />
-                          <div>
-                            <div className="font-semibold">Message sent successfully!</div>
-                            <div className="text-sm">We'll get back to you within 24 hours.</div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    {/* Submit Button */}
-                    <Button 
-                      type="submit" 
-                      disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-[#1F3B64] to-[#003366] hover:from-[#003366] hover:to-[#1F3B64] text-white text-lg font-semibold py-7 rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    >
-                      {isSubmitting ? (
-                        <span className="flex items-center justify-center">
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Sending Message...
-                        </span>
-                      ) : (
-                        <span className="flex items-center justify-center">
-                          Send Message
-                          <Send className="ml-2 w-5 h-5" />
-                        </span>
-                      )}
-                    </Button>
-
-                    {/* Privacy Notice */}
-                    <p className="text-sm text-gray-500 text-center">
-                      By submitting this form, you agree to our{' '}
-                      <a href="#" className="text-[#1F3B64] hover:underline font-medium">Privacy Policy</a>
-                      {' '}and{' '}
-                      <a href="#" className="text-[#1F3B64] hover:underline font-medium">Terms of Service</a>.
-                    </p>
-                  </form>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
+              <div className="relative h-64 sm:h-80 lg:h-auto">
+                <img 
+                  src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80" 
+                  alt="Construction project" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#1F3B64]/50 to-transparent"></div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

@@ -124,7 +124,7 @@ export default function AboutPage() {
       <Navigation />
       
       {/* Hero Section - Minimal and Elegant with Blue Background */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#f0f4ff] via-[#e6f0ff] to-[#dce8ff]">
+      <section className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#f0f4ff] via-[#e6f0ff] to-[#dce8ff] pt-20">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-[0.08]">
           <div className="absolute inset-0" style={{
@@ -134,30 +134,31 @@ export default function AboutPage() {
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute top-10 right-10 w-96 h-96 bg-gradient-to-br from-blue-300/30 to-indigo-300/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-br from-cyan-300/30 to-blue-300/30 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-indigo-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-10 right-10 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-gradient-to-br from-blue-300/30 to-indigo-300/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-gradient-to-br from-cyan-300/30 to-blue-300/30 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-gradient-to-br from-indigo-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-32 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-20 md:py-28 lg:py-32 text-center">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="mb-6"
+            className="mb-4 sm:mb-6"
           >
-            <p className="text-sm md:text-base tracking-[0.3em] text-gray-400 font-light uppercase">
+            <p className="text-xs sm:text-sm md:text-base tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] text-gray-400 font-light uppercase">
               About GenEngg
             </p>
           </motion.div>
           
           <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-[#1F3B64] mb-8 leading-tight tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-light text-[#1F3B64] mb-4 sm:mb-6 md:mb-8 leading-tight tracking-tight px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            We excel in<br />
+            We excel in<br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             <motion.span 
               className="font-bold"
               initial={{ opacity: 0, y: 20 }}
@@ -169,7 +170,7 @@ export default function AboutPage() {
           </motion.h1>
           
           <motion.p 
-            className="text-lg md:text-xl text-gray-600 font-light max-w-2xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-gray-600 font-light max-w-2xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.1 }}
@@ -179,26 +180,26 @@ export default function AboutPage() {
         </div>
 
         {/* Floating Stats - Minimalist */}
-        <div className="absolute bottom-12 left-0 right-0 z-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="absolute bottom-4 sm:bottom-8 md:bottom-12 left-0 right-0 z-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
               ref={statsRef}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
+              className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12"
             >
               <div className="text-center">
-                <div className="text-4xl lg:text-5xl font-light text-[#1F3B64] mb-2">{stats.projects}+</div>
-                <div className="text-xs md:text-sm text-gray-500 font-light tracking-wide uppercase">Projects Completed</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#1F3B64] mb-1 sm:mb-2">{stats.projects}+</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-light tracking-wide uppercase">Projects Completed</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl lg:text-5xl font-light text-[#1F3B64] mb-2">{stats.clients}+</div>
-                <div className="text-xs md:text-sm text-gray-500 font-light tracking-wide uppercase">Happy Clients</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#1F3B64] mb-1 sm:mb-2">{stats.clients}+</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-light tracking-wide uppercase">Happy Clients</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl lg:text-5xl font-light text-[#1F3B64] mb-2">{stats.experience}+</div>
-                <div className="text-xs md:text-sm text-gray-500 font-light tracking-wide uppercase">Years of Expertise</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#1F3B64] mb-1 sm:mb-2">{stats.experience}+</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-light tracking-wide uppercase">Years of Expertise</div>
               </div>
             </motion.div>
           </div>
@@ -206,14 +207,14 @@ export default function AboutPage() {
       </section>
 
       {/* Mission, Vision & Values Section */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-12 md:mb-16"
           >
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-[#1F3B64] px-5 py-2 rounded-full text-sm font-semibold mb-6 border border-blue-100">
               <Target className="w-4 h-4" />
@@ -288,20 +289,20 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values Section - Horizontal Carousel */}
-      <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 1 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-12 md:mb-16"
           >
-            <p className="text-sm tracking-[0.3em] text-gray-400 font-light uppercase mb-4">
+            <p className="text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] text-gray-400 font-light uppercase mb-3 sm:mb-4">
               Our Core Values
             </p>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#1F3B64] mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-[#1F3B64] mb-4 sm:mb-6 leading-tight px-4">
               Principles That
               <span className="block font-bold">Drive Our Success</span>
             </h2>
@@ -309,39 +310,39 @@ export default function AboutPage() {
 
           {/* Horizontal Carousel */}
           <div className="relative">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
               {/* Left Side - Values Content */}
               <motion.div
                 key={currentValueIndex}
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 30 }}
-                transition={{ duration: 0.6 }}
-                className="space-y-8"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-4 sm:space-y-6 md:space-y-8"
               >
                 {/* Icon and Number */}
-                <div className="flex items-center gap-6">
-                  <div className={`w-20 h-20 bg-gradient-to-br ${values[currentValueIndex].color} rounded-2xl flex items-center justify-center shadow-xl`}>
-                    {React.createElement(values[currentValueIndex].icon, { className: "w-10 h-10 text-white" })}
+                <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+                  <div className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br ${values[currentValueIndex].color} rounded-xl sm:rounded-2xl flex items-center justify-center shadow-xl`}>
+                    {React.createElement(values[currentValueIndex].icon, { className: "w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" })}
                   </div>
-                  <div className="text-6xl font-light text-gray-200">
+                  <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-gray-200">
                     0{currentValueIndex + 1}
                   </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-4xl md:text-5xl font-light text-[#1F3B64]">
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light text-[#1F3B64]">
                   <span className="font-bold">{values[currentValueIndex].title.split(' ')[0]}</span>{' '}
                   {values[currentValueIndex].title.split(' ').slice(1).join(' ')}
                 </h3>
 
                 {/* Description */}
-                <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
+                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed max-w-xl">
                   {values[currentValueIndex].description}
                 </p>
 
                 {/* Carousel Indicators */}
-                <div className="flex items-center gap-3 pt-8">
+                <div className="flex items-center gap-2 sm:gap-3 pt-4 sm:pt-6 md:pt-8">
                   {values.map((_, index) => (
                     <button
                       key={index}
@@ -357,18 +358,18 @@ export default function AboutPage() {
                 </div>
 
                 {/* Navigation Dots with Labels */}
-                <div className="grid grid-cols-3 gap-4 pt-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-4">
                   {values.slice(0, 6).map((value, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentValueIndex(index)}
-                      className={`text-left p-3 rounded-lg transition-all duration-300 ${
+                      className={`text-left p-2 sm:p-3 rounded-lg transition-all duration-300 ${
                         index === currentValueIndex
                           ? 'bg-blue-50 border border-[#1F3B64]'
                           : 'bg-gray-50 hover:bg-gray-100'
                       }`}
                     >
-                      <div className={`text-xs font-semibold mb-1 ${
+                      <div className={`text-[10px] sm:text-xs font-semibold mb-1 ${
                         index === currentValueIndex ? 'text-[#1F3B64]' : 'text-gray-500'
                       }`}>
                         {value.title}
@@ -381,13 +382,13 @@ export default function AboutPage() {
               {/* Right Side - Image */}
               <motion.div
                 key={`img-${currentValueIndex}`}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.6 }}
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
                 className="relative"
               >
-                <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
                   <img 
                     src={values[currentValueIndex].image}
                     alt={values[currentValueIndex].title}
@@ -396,15 +397,15 @@ export default function AboutPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1F3B64]/30 via-transparent to-transparent"></div>
                   
                   {/* Floating Counter Badge */}
-                  <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-xl">
-                    <div className="text-4xl font-bold text-[#1F3B64]">
+                  <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6 bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 shadow-xl">
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1F3B64]">
                       {currentValueIndex + 1}/{values.length}
                     </div>
                   </div>
                 </div>
 
                 {/* Decorative Element */}
-                <div className={`absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br ${values[currentValueIndex].color} rounded-3xl opacity-20 blur-2xl -z-10`}></div>
+                <div className={`absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gradient-to-br ${values[currentValueIndex].color} rounded-2xl sm:rounded-3xl opacity-20 blur-2xl -z-10`}></div>
               </motion.div>
             </div>
           </div>
@@ -505,7 +506,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {certifications.map((cert, index) => (
               <motion.div
                 key={index}
@@ -513,7 +514,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 hover:scale-105 w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(16.666%-20px)] min-w-[140px]"
               >
                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Award className="w-8 h-8 text-white" />

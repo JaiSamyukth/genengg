@@ -24,6 +24,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/about" className="text-gray-300 hover:text-white transition-colors text-base">
+                  About
+                </Link>
+              </li>
+              <li>
                 <Link href="/services" className="text-gray-300 hover:text-white transition-colors text-base">
                   Services
                 </Link>
@@ -34,7 +39,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#contact" className="text-gray-300 hover:text-white transition-colors text-base">
+                <Link href="/contact" className="text-gray-300 hover:text-white transition-colors text-base">
                   Contact
                 </Link>
               </li>
@@ -44,12 +49,32 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h4 className="text-lg font-semibold mb-6">Services</h4>
-            <ul className="space-y-3 text-gray-300 text-base">
-              <li>Structural Steel Detailing</li>
-              <li>Connection Design & PE Stamping</li>
-              <li>Estimation & 3D Modelling</li>
-              <li>Facade Detailing</li>
-              <li>BIM & Advanced Modelling</li>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors text-base">
+                  Structural Steel Detailing
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors text-base">
+                  Connection Design
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors text-base">
+                  Estimation & Take-Off
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors text-base">
+                  Rebar Detailing
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors text-base">
+                  BIM Services
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -59,15 +84,26 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <Mail className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300 text-base">info@genengg.com</span>
+                <a href="mailto:info@genengg.com" className="text-gray-300 hover:text-white transition-colors text-base">
+                  info@genengg.com
+                </a>
               </li>
               <li className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300 text-base">+1 302-499-2050</span>
+                <a href="tel:+13024992050" className="text-gray-300 hover:text-white transition-colors text-base">
+                  +1 302-499-2050
+                </a>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300 text-base">16192 Coastal Highway, Lewes, DE 19958</span>
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=16192+Coastal+Highway,+Lewes,+DE+19958" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-white transition-colors text-base"
+                >
+                  16192 Coastal Highway, Lewes, DE 19958
+                </a>
               </li>
             </ul>
             <div className="flex space-x-4 mt-6">
