@@ -51,7 +51,6 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
-  outputFileTracingRoot: path.resolve(__dirname, '../../'),
   turbopack: {
     rules: {
       "*.{jsx,tsx}": {

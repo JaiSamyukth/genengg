@@ -2,6 +2,7 @@
 
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
+import FAQSection from "@/components/FAQSection"
 import { Button } from "@/components/ui/button"
 import { Building2, Shield, Zap, Layers, ClipboardCheck, CheckCircle2, ArrowRight, Award, Users, Target, Lightbulb, Hammer, BarChart3 } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
@@ -799,6 +800,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* FAQ Section - GEO Optimized */}
+      <FAQSection />
 
       <Footer />
     </main>
